@@ -8,8 +8,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import java.util.HashSet;
 
 public class GetGoing extends AppCompatActivity {
+    private HashSet<Event> events = new HashSet<>();
+    //private EventSerializer eventSerializer = new EventSerializer("/assets/events.ser");
+    //private EventDeserializer eventDeserializer = new EventDeserializer("/assets/events.ser");
+
+    public HashSet<Event> getEvents()
+    {
+        return this.events;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

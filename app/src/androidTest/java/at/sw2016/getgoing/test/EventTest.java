@@ -18,6 +18,8 @@ public class EventTest extends ActivityInstrumentationTestCase2<GetGoing> {
     private String evtName = "testEvtName";
     private String evtLoc = "testEvtLoc";
     private Date evtDate = new Date();
+    Event testEvt;
+
 
     public EventTest() {
         super(GetGoing.class);
@@ -26,6 +28,7 @@ public class EventTest extends ActivityInstrumentationTestCase2<GetGoing> {
     public void setUp() throws Exception {
         super.setUp();
         han = new Solo(getInstrumentation(), getActivity());
+        testEvt = new Event(evtName, evtLoc, evtDate);
     }
 
     public void tearDown() throws Exception {
@@ -33,7 +36,6 @@ public class EventTest extends ActivityInstrumentationTestCase2<GetGoing> {
     }
 
     public void testCtor() {
-        Event testEvt = new Event(evtName, evtLoc, evtDate);
         assertEquals(testEvt.getName(), evtName);
         assertEquals(testEvt.getLocation(), evtLoc);
         assertEquals(testEvt.getDate(), evtDate);
@@ -41,21 +43,18 @@ public class EventTest extends ActivityInstrumentationTestCase2<GetGoing> {
 
     public void testSetName() {
         String newEvtName = "some_new_name";
-        Event testEvt = new Event(evtName, evtLoc, evtDate);
         testEvt.setName(newEvtName);
         assertEquals("Testing Event.setName()", testEvt.getName(), newEvtName);
     }
 
     public void testSetLocation() {
         String newEvtLoc = "some_new_location";
-        Event testEvt = new Event(evtName, evtLoc, evtDate);
         testEvt.setLocation(newEvtLoc);
         assertEquals("Testing Event.setLocation()", testEvt.getLocation(), newEvtLoc);
     }
 
     public void testSetDate() {
         Date newDate = new Date();
-        Event testEvt = new Event(evtName, evtLoc, evtDate);
         testEvt.setDate(newDate);
         assertEquals("Testing Event.setDate()", testEvt.getDate(), newDate);
     }
