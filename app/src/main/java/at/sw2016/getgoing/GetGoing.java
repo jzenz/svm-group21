@@ -8,8 +8,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class GetGoing extends AppCompatActivity {
+
+    private EditText nameField;
+    private EditText dateField;
+    private EditText locationField;
+
+    private ArrayList<Event> events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +28,16 @@ public class GetGoing extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        events = new ArrayList<>();
+
+        nameField = (EditText) findViewById(R.id.nameField);
+        locationField = (EditText) findViewById(R.id.locationField);
+        dateField = (EditText) findViewById(R.id.dateField);
+
+        Event testevent = new Event("Boaty MCBoatface", "England", new Date(12000));
+        events.add(testevent);
+        displayEvent(testevent);
+
     }
 
     @Override
@@ -48,5 +60,19 @@ public class GetGoing extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void displayEvent(Event e){
+        this.nameField.setText(e.getName());
+        this.locationField.setText(e.getLocation());
+        this.dateField.setText(e.getDate().toString());
+    }
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
     }
 }
