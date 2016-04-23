@@ -1,13 +1,17 @@
 package at.sw2016.getgoing.test;
 
+import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 import at.sw2016.getgoing.Event;
@@ -25,7 +29,6 @@ public class EventSerializerDeserializerTest extends ActivityInstrumentationTest
     private String evtLoc = "testEvtLoc";
     private Date evtDate = new Date();
     Event testEvt;
-
 
     public EventSerializerDeserializerTest() {
         super(GetGoing.class);
