@@ -1,15 +1,14 @@
 package at.sw2016.getgoing.test;
 
-import android.os.Environment;
 import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 
 import at.sw2016.getgoing.Event;
 import at.sw2016.getgoing.EventDeserializer;
@@ -32,6 +31,7 @@ public class EventSerializerDeserializerTest extends ActivityInstrumentationTest
         super(GetGoing.class);
     }
 
+    @Override
     public void setUp() throws Exception {
         super.setUp();
         han = new Solo(getInstrumentation(), getActivity());
@@ -44,14 +44,14 @@ public class EventSerializerDeserializerTest extends ActivityInstrumentationTest
 
     public void testReadWriteEvent()
     {
+        ArrayList<Event> events = new ArrayList<>();
+        events.add(testEvt);
         EventSerializer eventSerializer = new EventSerializer();
         EventDeserializer eventDeserializer = new EventDeserializer();
-        byte[] serEvent = eventSerializer.serializeEvent(testEvt);
-        Event res = eventDeserializer.deserializeEvent(new ByteArrayInputStream(serEvent));
+        byte[] serEvent = eventSerializer.serializeEvents(events);
+        List<Event> res = eventDeserializer.deserializeEvents(new ByteArrayInputStream(serEvent));
 
-        boolean areEqual = res.equals(testEvt);
-
-        assertEquals(true, areEqual);
+        assertEquals(events, res);
     }
 
 }

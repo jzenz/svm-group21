@@ -1,24 +1,21 @@
 package at.sw2016.getgoing;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
+import java.util.List;
 
 /**
  * Created by Michael on 17.04.2016.
  */
 public class EventDeserializer {
 
-    public Event deserializeEvent(ByteArrayInputStream bais) {
-        Event event;
-
+    public List<Event> deserializeEvents(ByteArrayInputStream bais) {
+        List<Event> events;
         try {
             ObjectInputStream ois = new ObjectInputStream(bais);
-            event = (Event) ois.readObject();
+            events = (List<Event>) ois.readObject();
             ois.close();
-            return event;
+            return events;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
