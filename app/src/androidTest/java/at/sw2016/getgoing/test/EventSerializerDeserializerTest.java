@@ -5,7 +5,9 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 
@@ -40,25 +42,16 @@ public class EventSerializerDeserializerTest extends ActivityInstrumentationTest
         super.tearDown();
     }
 
-    public void testWriteEvent()
+    public void testReadWriteEvent()
     {
-        String MEDIA_MOUNTED = "mounted";
-        String diskState = Environment.getExternalStorageState();
-        if(diskState.equals(MEDIA_MOUNTED))
-        {
-            File docFolder =
-                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
-            File fileDoc = new File(docFolder, "test.ser");
-            EventSerializer ser = new EventSerializer(fileDoc);
-            ser.serializeEvent(testEvt);
+        EventSerializer eventSerializer = new EventSerializer();
+        EventDeserializer eventDeserializer = new EventDeserializer();
+        byte[] serEvent = eventSerializer.serializeEvent(testEvt);
+        Event res = eventDeserializer.deserializeEvent(new ByteArrayInputStream(serEvent));
 
-            EventDeserializer deserializer = new EventDeserializer(fileDoc);
-            Event bla = deserializer.deserializeEvent();
+        boolean areEqual = res.equals(testEvt);
 
-            assertNotNull(bla);
-
-            assertEquals(testEvt, bla);
-        }
+        assertEquals(true, areEqual);
     }
 
 }

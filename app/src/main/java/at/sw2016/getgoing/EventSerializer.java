@@ -1,27 +1,35 @@
 package at.sw2016.getgoing;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
  * Created by Michael on 17.04.2016.
  */
 public class EventSerializer {
-    private File file;
-
-    public EventSerializer(File file){
-        this.file = file;
-    }
-
-    public void serializeEvent(Event event) {
+    public byte[] serializeEvent(Event event) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = null;
         try{
-            FileOutputStream fout = new FileOutputStream(file);
-            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            oos = new ObjectOutputStream(baos);
             oos.writeObject(event);
-            oos.close();
+            return baos.toByteArray();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally{
+            try{
+                if(oos != null)
+                    oos.close();
+            } catch(IOException ex){
+
+            }
+            try {
+                baos.close();
+            } catch(IOException ex) {
+
+            }
         }
+        return null;
     }
 }
