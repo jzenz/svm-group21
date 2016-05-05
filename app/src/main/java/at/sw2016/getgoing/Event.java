@@ -39,4 +39,11 @@ public class Event {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public boolean equals(Object other){
+        return other.getClass().equals(this.getClass()) &&
+                ((Event)other).getName().equals(this.getName()) &&
+                ((Event)other).getLocation().equals(this.getLocation());
+    }
 }
