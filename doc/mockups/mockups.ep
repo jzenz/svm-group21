@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<Document xmlns="http://www.evolus.vn/Namespace/Pencil"><Properties/><Pages><Page><Properties><Property name="name">Overview</Property><Property name="id">1462429856318_1633</Property><Property name="width">833</Property><Property name="height">794.171875</Property><Property name="dimBackground"/><Property name="transparentBackground">true</Property><Property name="backgroundColor">#FFFFFFFF</Property><Property name="background">transparent</Property></Properties><Content><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="nz.nwatson.AndroidLollipop:Card" id="80e9f5d9d4334d87ae26b203229814ce" transform="matrix(1,0,0,1,245.0999755859375,103.39999389648438)"><p:metadata><p:property name="box"><![CDATA[367.19999999999993,600.8]]></p:property><p:property name="shadow"><![CDATA[true]]></p:property><p:property name="fillColor"><![CDATA[#FAFAFAFF]]></p:property></p:metadata>
+
+			<defs>
+				<filter p:name="dropShadow" id="7ed620b15e1b44d691ce31eea5b516a3">
+					<feFlood flood-opacity="0.35" flood-color="rgb(0,0,0)" result="flood" p:name="flood" id="d278f1005c4e4c2391d25ae00ddb5feb"/>
+					<feComposite in="flood" in2="SourceGraphic" operator="in"/>
+					<feGaussianBlur stdDeviation="2"/>
+					<feOffset dx="0" dy="1"/>
+				</filter>
+
+				<rect rx="2px" ry="2px" p:name="card" id="d9d26af1f6014248ba13b602c7ecdc90" width="367.2" height="600.8" style="fill: rgb(250, 250, 250); fill-opacity: 1;"/>
+			</defs>
+
+			<use xlink:href="#d9d26af1f6014248ba13b602c7ecdc90" xmlns:xlink="http://www.w3.org/1999/xlink" p:heavy="true" p:filter="url(#7ed620b15e1b44d691ce31eea5b516a3)" p:name="shadow" id="887a19c3a12c4523b437566013e2d4e0" filter="url(#7ed620b15e1b44d691ce31eea5b516a3)" style="visibility: visible;"/>
+			<use xlink:href="#d9d26af1f6014248ba13b602c7ecdc90" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+
+		</g><g xmlns="http://www.w3.org/2000/svg" p:type="Group" xmlns:p="http://www.evolus.vn/Namespace/Pencil" transform="matrix(1,0,0,1,248.29998779296875,111.60000610351562)" id="abda926f64384d309e4e70f14072bc20" p:sizing-gow="364" p:sizing-goh="165.6015625"><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="nz.nwatson.AndroidLollipop:menu" id="58df58ec071f455589713d52d65e0343" transform="matrix(1,0,0,1,0,0)" p:sizing-ox="0" p:sizing-oy="0" p:sizing-ow="364" p:sizing-oh="165.60000000000002"><p:metadata><p:property name="box"><![CDATA[364,165.60000000000002]]></p:property><p:property name="scrollbar"><![CDATA[false]]></p:property><p:property name="shadow"><![CDATA[true]]></p:property><p:property name="forceFont"><![CDATA[false]]></p:property><p:property name="fillColor"><![CDATA[#FAFAFAFF]]></p:property><p:property name="contentText"><![CDATA[Grillfeier*
+Geburtstag
+Party]]></p:property><p:property name="weight"><![CDATA[900]]></p:property><p:property name="textFont"><![CDATA[Roboto, sans-serif|300|normal|16px|none]]></p:property><p:property name="textColor"><![CDATA[#212121FF]]></p:property><p:property name="textAlign"><![CDATA[1,1]]></p:property></p:metadata>
+
+			<defs>
+				<filter p:name="dropShadow" id="5597c213980a41cd829480e196b8cff8">
+					<feFlood flood-opacity="0.35" flood-color="rgb(0,0,0)" result="flood" p:name="flood" id="8160ef50f5a64052bdccffb94f6a4129"/>
+					<feComposite in="flood" in2="SourceGraphic" operator="in"/>
+					<feGaussianBlur stdDeviation="2"/>
+					<feOffset dx="0" dy="1"/>
+				</filter>
+
+				<rect rx="2px" ry="2px" p:name="bg" id="ad9e5183736d42ccae4afef929fa2f02" x="0" y="0" width="364" height="165.60000000000002" style="fill: rgb(250, 250, 250); fill-opacity: 1;"/>
+			</defs>
+
+			<use xlink:href="#ad9e5183736d42ccae4afef929fa2f02" xmlns:xlink="http://www.w3.org/1999/xlink" p:heavy="true" p:filter="url(#5597c213980a41cd829480e196b8cff8)" p:name="shadow" id="e5f43704a64548a38d255662b3ec9c7e" filter="url(#5597c213980a41cd829480e196b8cff8)" style="visibility: visible;"/>
+			<use xlink:href="#ad9e5183736d42ccae4afef929fa2f02" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+
+			<rect width="4px" height="1px" style="fill: rgb(0, 0, 0); fill-opacity: 0.12; visibility: hidden; display: none;" p:name="scrollbar" id="677565dbedd143b595d7b9edce96dd64" transform="translate(360,0) scale(1,124.20000000000002)"/>
+
+			<foreignObject p:name="content" id="b629925876c5429c8184f61787d701ac" x="0" y="0" width="364" height="165.60000000000002" style="">
+				<div xmlns="http://www.w3.org/1999/xhtml">
+					<ul style="list-style: none outside none; text-indent: 0px; padding: 8px 0px; font-family: Roboto,sans-serif; font-size: 16px; font-weight: 300; font-style: normal; text-decoration: none; color: rgb(33, 33, 33); opacity: 1;" p:name="list" id="1fa36df85ad14498879724697ffffbd1"><li style="padding: 14px 16px; background: rgba(0, 0, 0, 0.05); font-weight: 900">Grillfeier</li><li style="padding: 14px 16px; font-weight: 900">Geburtstag</li><li style="padding: 14px 16px; font-weight: 900">Party</li></ul>
+				</div>
+			</foreignObject>
+		</g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="nz.nwatson.AndroidLollipop:ProgressBar" id="37108061c5a840bb9971440781064d91" transform="matrix(1,0,0,1,254.52166748046875,135.60000610351562)" p:sizing-ox="254.52166748046875" p:sizing-oy="135.60000610351562" p:sizing-ow="92.8" p:sizing-oh="4"><p:metadata><p:property name="box"><![CDATA[92.8,4]]></p:property><p:property name="prog"><![CDATA[93,0]]></p:property><p:property name="buffer"><![CDATA[92.8,0]]></p:property><p:property name="bgFillColor"><![CDATA[#00BCD44D]]></p:property><p:property name="fgFillColor"><![CDATA[#00BCD4FF]]></p:property></p:metadata>
+			<rect p:name="bgRect" id="69829ea9bc8044b78fd903491a0233c6" width="92.8" height="4" style="fill: rgb(0, 188, 212); fill-opacity: 0.301961;"/>
+			<rect p:name="fgRect" id="83f9773b174248dc8cc9534dd69865c0" width="93" height="4" style="fill: rgb(0, 188, 212); fill-opacity: 1;"/>
+		</g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="nz.nwatson.AndroidLollipop:ProgressBar" id="59d39c37930840279e95ccd94fe426be" transform="matrix(1,0,0,1,255.11956787109375,31.600006103515625)" p:sizing-ox="255.11956787109375" p:sizing-oy="31.600006103515625" p:sizing-ow="92.8" p:sizing-oh="4"><p:metadata><p:property name="box"><![CDATA[92.8,4]]></p:property><p:property name="prog"><![CDATA[59,0]]></p:property><p:property name="buffer"><![CDATA[93,0]]></p:property><p:property name="bgFillColor"><![CDATA[#00BCD44D]]></p:property><p:property name="fgFillColor"><![CDATA[#00BCD4FF]]></p:property></p:metadata>
+			<rect p:name="bgRect" id="9217927e0f6041e0bcaff61deda45a87" width="93" height="4" style="fill: rgb(0, 188, 212); fill-opacity: 0.301961;"/>
+			<rect p:name="fgRect" id="d29edc3af2e84e9195d0aa3fbbf59a45" width="59" height="4" style="fill: rgb(0, 188, 212); fill-opacity: 1;"/>
+		</g></g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="nz.nwatson.AndroidLollipop:ActionBar" id="1deecad132744e5681a2819e80c6a3ef" transform="matrix(1,0,0,1,251,60)" p:RelatedPage=""><p:metadata><p:property name="box"><![CDATA[362,56]]></p:property><p:property name="fillColor"><![CDATA[#00BCD4FF]]></p:property></p:metadata>
+
+			 <defs>
+			<linearGradient x1="0%" y1="0%" x2="0%" y2="100%" p:name="shadowFill" id="26d55e426a5c4499a26ce245903c0ef6">
+
+				<stop offset="0" style="stop-color:#000000;stop-opacity:0.259" p:name="stop1" id="286d80029c01437ba81fd412f4a85f85"/>
+				<stop offset="1" style="stop-color:#000000;stop-opacity:0" p:name="stop2" id="8c4ac0ee04c445ccaef4586c8286cb07"/>
+			</linearGradient>
+			 </defs>
+			 <rect p:name="bg" id="f6a25fbd186449c79db4ab77c9311941" width="362" height="56" style="fill: rgb(0, 188, 212); fill-opacity: 1;"/>
+		 <rect width="1" height="6" style="fill: url(#26d55e426a5c4499a26ce245903c0ef6)" p:name="shadow" id="fb40008f4f294dde9c676271f459c773" transform="translate(0,56) scale(362,1)"/>
+		</g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="nz.nwatson.AndroidLollipop:Phone" id="b3a56234297b46da9a924843fe8755cf" transform="matrix(1,0,0,1,233.5,-3.078125)" p:sizing-ox="0" p:sizing-oy="0" p:sizing-ow="396" p:sizing-oh="798"><p:metadata><p:property name="box"><![CDATA[396,798]]></p:property><p:property name="fillColor"><![CDATA[#000000FF]]></p:property></p:metadata>
+
+			<path p:name="phone" id="31453df3b8c7478d9f3faacbcfcbe9db" style="fill: rgb(0, 0, 0); fill-opacity: 1;" d="M 30 12 C 16 14 0 26 0 43 L 0 755 C 0 772 16 784 30 786 C 142 801 254 801 366 786 C 380 784 396 772 396 755 L 396 43 C 396 26 380 14 366 12 C 254 -3 142 -3 30 12 z M 18 68 L 378 68 L 378 708 L 18 708 z"/>
+
+		</g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="Evolus.Common:Balloon" id="9b9a430866964044b719f1b888a3783c" transform="matrix(1,0,0,1,9.5,141)"><p:metadata><p:property name="box"><![CDATA[200,80]]></p:property><p:property name="withBlur"><![CDATA[false]]></p:property><p:property name="radius"><![CDATA[12,0]]></p:property><p:property name="leftStart"><![CDATA[0,14]]></p:property><p:property name="leftEnd"><![CDATA[0,33]]></p:property><p:property name="rightStart"><![CDATA[200,35]]></p:property><p:property name="rightEnd"><![CDATA[200,60]]></p:property><p:property name="topStart"><![CDATA[14,0]]></p:property><p:property name="topEnd"><![CDATA[33,0]]></p:property><p:property name="bottomStart"><![CDATA[149,80]]></p:property><p:property name="bottomEnd"><![CDATA[185,80]]></p:property><p:property name="pin" p:viay="53.400006103515636" p:viax="228.79998779296875" p:connectedOutletId="middle-left" p:connectedShapeId="58df58ec071f455589713d52d65e0343"><![CDATA[238.79998779296875,53.400006103515636]]></p:property><p:property name="fillColor"><![CDATA[#4388CCFF]]></p:property><p:property name="strokeColor"><![CDATA[#1B3280FF]]></p:property><p:property name="strokeStyle"><![CDATA[2|]]></p:property><p:property name="textContent"><![CDATA[List of events<br />]]></p:property><p:property name="textFont"><![CDATA["Liberation Sans",Arial,sans-serif|normal|normal|16px|none]]></p:property><p:property name="textColor"><![CDATA[#000000FF]]></p:property><p:property name="textAlign"><![CDATA[1,1]]></p:property></p:metadata>
+
+            <defs>
+                <filter height="1.2558399" y="-0.12792" width="1.06396" x="-0.03198" p:name="imageShading" id="aa78aeca16b5434393fb620628a0da86">
+                    <feGaussianBlur stdDeviation="1.3325" in="SourceAlpha"/>
+                </filter>
+                <g p:name="container" id="8968ca4045e3433990393e4a31b3717b">
+                    <path transform="translate(0.5 0.5)" style="stroke-width: 2; fill: rgb(67, 136, 204); fill-opacity: 1; stroke: rgb(27, 50, 128); stroke-opacity: 1;" p:name="rect" id="ceb25f80f0d5419292499610a44473a5" d="M 12 0 L 188 0 C 196 0 200 4 200 12 L 200 35 L 238.79998779296875 53.400006103515636 L 200 60 L 200 68 C 200 76 196 80 188 80 L 12 80 C 4 80 0 76 0 68 L 0 12 C 0 4 4 0 12 0"/>
+                </g>
+            </defs>
+            <use xlink:href="#8968ca4045e3433990393e4a31b3717b" xmlns:xlink="http://www.w3.org/1999/xlink" transform="translate(1, 1)" p:filter="url(#aa78aeca16b5434393fb620628a0da86)" style="opacity: 0.6; visibility: hidden; display: none;" p:heavy="true" p:name="bgCopy" id="173daa8b6c2545dfa81b950c38088064"/>
+            <use xlink:href="#8968ca4045e3433990393e4a31b3717b" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            <foreignObject x="12" y="30" width="176" height="20" p:name="text" id="6a8f52ec09234c0ba6668e136acfa5b6" style="font-family: &quot;Liberation Sans&quot;,Arial,sans-serif; font-size: 16px; font-weight: normal; font-style: normal; text-decoration: none; fill: rgb(0, 0, 0); fill-opacity: 1; color: rgb(0, 0, 0); opacity: 1; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml">List of events<br /></div></foreignObject>
+        </g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="Evolus.Common:Balloon" id="40968bf44c4345a4ac0ec65c4407e8c6" transform="matrix(1,0,0,1,632.5,119)"><p:metadata><p:property name="box"><![CDATA[200,80]]></p:property><p:property name="withBlur"><![CDATA[false]]></p:property><p:property name="radius"><![CDATA[19,0]]></p:property><p:property name="leftStart"><![CDATA[0,21]]></p:property><p:property name="leftEnd"><![CDATA[0,33]]></p:property><p:property name="rightStart"><![CDATA[200,21]]></p:property><p:property name="rightEnd"><![CDATA[200,33]]></p:property><p:property name="topStart"><![CDATA[21,0]]></p:property><p:property name="topEnd"><![CDATA[33,0]]></p:property><p:property name="bottomStart"><![CDATA[21,80]]></p:property><p:property name="bottomEnd"><![CDATA[33,80]]></p:property><p:property name="pin" p:connectedShapeId="59d39c37930840279e95ccd94fe426be" p:connectedOutletId="top-right" p:viax="-26.289720947889847" p:viay="23.769377578236092"><![CDATA[-36.2804443359375,24.20001220703125]]></p:property><p:property name="fillColor"><![CDATA[#4388CCFF]]></p:property><p:property name="strokeColor"><![CDATA[#1B3280FF]]></p:property><p:property name="strokeStyle"><![CDATA[2|]]></p:property><p:property name="textContent"><![CDATA[Progress of shared shopping list<br />]]></p:property><p:property name="textFont"><![CDATA["Liberation Sans",Arial,sans-serif|normal|normal|16px|none]]></p:property><p:property name="textColor"><![CDATA[#000000FF]]></p:property><p:property name="textAlign"><![CDATA[1,1]]></p:property></p:metadata>
+
+            <defs>
+                <filter height="1.2558399" y="-0.12792" width="1.06396" x="-0.03198" p:name="imageShading" id="7b2cd9aaca124983b82ded9f8c701410">
+                    <feGaussianBlur stdDeviation="1.3325" in="SourceAlpha"/>
+                </filter>
+                <g p:name="container" id="86296415871a42239a0c4fcb59cfb11f">
+                    <path transform="translate(0.5 0.5)" style="stroke-width: 2; fill: rgb(67, 136, 204); fill-opacity: 1; stroke: rgb(27, 50, 128); stroke-opacity: 1;" p:name="rect" id="a941ae6569014b3884a9fbbb170ddf8b" d="M 19 0 L 181 0 C 193.66666666666666 0 200 6.333333333333333 200 19 L 200 61 C 200 73.66666666666667 193.66666666666666 80 181 80 L 19 80 C 6.333333333333333 80 0 73.66666666666667 0 61 L 0 33 L -36.2804443359375 24.20001220703125 L 0 21 L 0 19 C 0 6.333333333333333 6.333333333333333 0 19 0"/>
+                </g>
+            </defs>
+            <use xlink:href="#86296415871a42239a0c4fcb59cfb11f" xmlns:xlink="http://www.w3.org/1999/xlink" transform="translate(1, 1)" p:filter="url(#7b2cd9aaca124983b82ded9f8c701410)" style="opacity: 0.6; visibility: hidden; display: none;" p:heavy="true" p:name="bgCopy" id="c8c68b8683de42b8a6c3f13231817b35"/>
+            <use xlink:href="#86296415871a42239a0c4fcb59cfb11f" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            <foreignObject x="19" y="20" width="162" height="40" p:name="text" id="64357d5433944f1e8baf459d13091eef" style="font-family: &quot;Liberation Sans&quot;,Arial,sans-serif; font-size: 16px; font-weight: normal; font-style: normal; text-decoration: none; fill: rgb(0, 0, 0); fill-opacity: 1; color: rgb(0, 0, 0); opacity: 1; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml">Progress of shared shopping list<br /></div></foreignObject>
+        </g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="Evolus.Common:Balloon" id="8da8cdfbe10d4d67bc215dd9bf1640ee" transform="matrix(1,0,0,1,632.5,635)"><p:metadata><p:property name="box"><![CDATA[200,80]]></p:property><p:property name="withBlur"><![CDATA[false]]></p:property><p:property name="radius"><![CDATA[19,0]]></p:property><p:property name="leftStart"><![CDATA[0,21]]></p:property><p:property name="leftEnd"><![CDATA[0,33]]></p:property><p:property name="rightStart"><![CDATA[200,21]]></p:property><p:property name="rightEnd"><![CDATA[200,33]]></p:property><p:property name="topStart"><![CDATA[21,0]]></p:property><p:property name="topEnd"><![CDATA[33,0]]></p:property><p:property name="bottomStart"><![CDATA[21,80]]></p:property><p:property name="bottomEnd"><![CDATA[33,80]]></p:property><p:property name="pin" p:viay="28" p:viax="-22" p:connectedOutletId="middle-right" p:connectedShapeId="fd509becb05d4574a284fe28516b5db3"><![CDATA[-32,28]]></p:property><p:property name="fillColor"><![CDATA[#4388CCFF]]></p:property><p:property name="strokeColor"><![CDATA[#1B3280FF]]></p:property><p:property name="strokeStyle"><![CDATA[2|]]></p:property><p:property name="textContent"><![CDATA[Event quick-add functionality<br />]]></p:property><p:property name="textFont"><![CDATA["Liberation Sans",Arial,sans-serif|normal|normal|16px|none]]></p:property><p:property name="textColor"><![CDATA[#000000FF]]></p:property><p:property name="textAlign"><![CDATA[1,1]]></p:property></p:metadata>
+
+            <defs>
+                <filter height="1.2558399" y="-0.12792" width="1.06396" x="-0.03198" p:name="imageShading" id="2747147408924b0d8553adc49317d0e2">
+                    <feGaussianBlur stdDeviation="1.3325" in="SourceAlpha"/>
+                </filter>
+                <g p:name="container" id="047ab96575a04b8e80683a46228c220c">
+                    <path transform="translate(0.5 0.5)" style="stroke-width: 2; fill: rgb(67, 136, 204); fill-opacity: 1; stroke: rgb(27, 50, 128); stroke-opacity: 1;" p:name="rect" id="aa56a5f2fda54204bcc39a553cc8a9b5" d="M 19 0 L 181 0 C 193.66666666666666 0 200 6.333333333333333 200 19 L 200 61 C 200 73.66666666666667 193.66666666666666 80 181 80 L 19 80 C 6.333333333333333 80 0 73.66666666666667 0 61 L 0 33 L -32 28 L 0 21 L 0 19 C 0 6.333333333333333 6.333333333333333 0 19 0"/>
+                </g>
+            </defs>
+            <use xlink:href="#047ab96575a04b8e80683a46228c220c" xmlns:xlink="http://www.w3.org/1999/xlink" transform="translate(1, 1)" p:filter="url(#2747147408924b0d8553adc49317d0e2)" style="opacity: 0.6; visibility: hidden; display: none;" p:heavy="true" p:name="bgCopy" id="30e59beffa5547f89634857ea318a920"/>
+            <use xlink:href="#047ab96575a04b8e80683a46228c220c" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+            <foreignObject x="19" y="20" width="162" height="40" p:name="text" id="11377f62f00544878d05f094cee10fa2" style="font-family: &quot;Liberation Sans&quot;,Arial,sans-serif; font-size: 16px; font-weight: normal; font-style: normal; text-decoration: none; fill: rgb(0, 0, 0); fill-opacity: 1; color: rgb(0, 0, 0); opacity: 1; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml">Event quick-add functionality<br /></div></foreignObject>
+        </g><g xmlns="http://www.w3.org/2000/svg" p:type="Group" xmlns:p="http://www.evolus.vn/Namespace/Pencil" transform="translate(544.5,635)" id="fa616ac174984c23ae2dbc59d789020f" p:sizing-gow="56" p:sizing-goh="56"><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="nz.nwatson.AndroidLollipop:FloatingActionButton" id="fd509becb05d4574a284fe28516b5db3" transform="matrix(1,0,0,1,0,0)" p:sizing-ox="0" p:sizing-oy="0" p:sizing-ow="56" p:sizing-oh="56"><p:metadata><p:property name="box"><![CDATA[56,56]]></p:property><p:property name="shadow"><![CDATA[true]]></p:property><p:property name="fillColor"><![CDATA[#00BCD4FF]]></p:property></p:metadata>
+
+			<defs>
+                <filter height="1.2558399" y="-0.12792" width="1.06396" x="-0.03198" p:name="dropShadow" id="7e3869aa9c784f468f629e6db1220e14">
+					<feFlood flood-opacity="0.35" flood-color="rgb(0,0,0)" result="flood" p:name="flood" id="e6d40173800b4aa080b684a2195fcace"/>
+					<feComposite in="flood" in2="SourceGraphic" operator="in"/>
+					<feGaussianBlur stdDeviation="2"/>
+					<feOffset dx="0" dy="1"/>
+                </filter>
+
+				<ellipse rx="28" ry="28" p:name="bg" id="8e16cc3ad4764ef7a6dca6c3904889a6" cx="28" cy="28" style="fill: rgb(0, 188, 212); fill-opacity: 1;"/>
+			</defs>
+
+			<use xlink:href="#8e16cc3ad4764ef7a6dca6c3904889a6" xmlns:xlink="http://www.w3.org/1999/xlink" p:heavy="true" p:filter="url(#7e3869aa9c784f468f629e6db1220e14)" p:name="shadow" id="4f22750e07974e19883c24770b251d44" filter="url(#7e3869aa9c784f468f629e6db1220e14)" style="visibility: visible;"/>
+			<use xlink:href="#8e16cc3ad4764ef7a6dca6c3904889a6" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+		</g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="Evolus.Common:RichTextBoxV2" id="3db685ff61b04d1b9efc2a94c5eb8433" transform="matrix(1,0,0,1,23,17)" p:sizing-ox="23" p:sizing-oy="17" p:sizing-ow="11" p:sizing-oh="22"><p:metadata><p:property name="width"><![CDATA[200,0]]></p:property><p:property name="fixedWidth"><![CDATA[false]]></p:property><p:property name="textContent"><![CDATA[+]]></p:property><p:property name="textFont"><![CDATA["Liberation Sans",Arial,sans-serif|bold|normal|18px|none]]></p:property><p:property name="textColor"><![CDATA[#FFFFFFFF]]></p:property><p:property name="customStyle"><![CDATA[
+                ]]></p:property></p:metadata>
+
+            <foreignObject x="0" y="0" width="11" height="22" p:name="htmlObject" id="009878916a554a30b8b650a32acab7f8" style="color: rgb(255, 255, 255); opacity: 1; font-family: &quot;Liberation Sans&quot;,Arial,sans-serif; font-size: 18px; font-weight: bold; font-style: normal; text-decoration: none;">
+                <div xmlns="http://www.w3.org/1999/xhtml" p:name="textDiv" id="f232074c190c4976b7e4ae01bbf4cdab" style="display: inline-block; white-space: nowrap; text-decoration: none;"><div xmlns="http://www.w3.org/1999/xhtml">+</div></div>
+            </foreignObject>
+        </g></g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="Evolus.AndroidICSHIFI:menuIcon" id="81f66c35ec5c4e0082916892fd8387fe" transform="matrix(1,0,0,1,574,75)"><p:metadata><p:property name="type"><![CDATA[moreoverV3_dark]]></p:property></p:metadata>
+            <image x="0" y="0" width="32" height="32" preserveAspectRatio="none" p:name="image" id="a79ecf5e23f144189953dd480f382bdb" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAQUlEQVRYw+3UQQoAIAgAQY0e3s/tDXUxaDwKwoCwWVXROSOaB6AdMC/v1uHeCwDeBeT3KdYBAAAd0AEAAB0AaAdsALUPN+yVmP0AAAAASUVORK5CYII=" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        </g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="Evolus.Common:PlainTextV2" id="9be28c65cd4541edafa43e4e9bccc8be" transform="matrix(1,0,0,1,294,98)"><p:metadata><p:property name="disabled"><![CDATA[false]]></p:property><p:property name="width"><![CDATA[100,0]]></p:property><p:property name="fixedWidth"><![CDATA[false]]></p:property><p:property name="label"><![CDATA[Get Going]]></p:property><p:property name="textColor"><![CDATA[#000000FF]]></p:property><p:property name="textFont"><![CDATA["Liberation Sans",Arial,sans-serif|bold|normal|19px|none]]></p:property><p:property name="textAlign"><![CDATA[0,0]]></p:property></p:metadata>
+            <rect x="0" y="0" style="fill: none; stroke: none; visibility: hidden; display: none;" p:name="bgRect" id="ec2b08941fd443788696a5c43e9aa992" width="0" height="0"/>
+            <text xml:space="preserve" p:name="text" id="fabecce72ad847f2a995b05bc24066eb" style="fill: rgb(0, 0, 0); fill-opacity: 1; font-family: &quot;Liberation Sans&quot;,Arial,sans-serif; font-size: 19px; font-weight: bold; font-style: normal; text-decoration: none;"><tspan x="0" y="0">Get Going</tspan></text>
+        </g><g xmlns="http://www.w3.org/2000/svg" p:type="Shape" xmlns:p="http://www.evolus.vn/Namespace/Pencil" p:def="Evolus.AndroidICSHIFI:menuIcon" id="d87b3c737ffc406db9c0a42ecb25f57b" transform="matrix(1,0,0,1,257,75)"><p:metadata><p:property name="type"><![CDATA[play_clip]]></p:property></p:metadata>
+            <image x="0" y="0" width="32" height="32" preserveAspectRatio="none" p:name="image" id="036ba7ef33614080b467c1f7c1b7b8bd" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAAAEgAAABIAEbJaz4AAAAJdnBBZwAAACAAAAAgAIf6nJ0AAAJRSURBVEjHxZVPSFRBHMe/v5nZVlqWXSqWEjaSFQ+iEiQqRPTnsAghRFAepC5dQiHqaBeLhCIIiaJDRdEtuggR0iEU2wrRZYmNLKgkEkUxTXd1I9578+uwZO+5b3ff1sHvbd7M7zPf3wzzfcBmS9oHMfLTKv0HzY9GAESoAGJfqmQ7k05gWZEF5spaIADbDnRe3Pe2NsM75tfMrWR48mEHBGLNN4NdYa5/EzXW6hYXGB6acQBq2rqCQTOuOqrnGhLb5XfOAuUgomBIlm4yBwNPDzX1oD0cBANEngEAIEmT1h361c6BY1U9aNkjmVVRH8L9oyALVeZ5mqjtPjVzBnW9APtcIc4zaD0dJJ1fJgDSCOmjvnh0uv5BaMuisQoUIlwd/GFKMFm61RgKP47HunEkHEDBzZQA5KclaYLVqceq+0+Ks9jbIsB2RNEW7E6ILPj1QToRyTQM7cISlj07+LsPkYUa82FVqu3wOewHFFUEWBdvfGzKW50FYklTqj/3KK1f4CtgsmeABlhSRt02b3xYGm5OJy0Q1t+qKl8swPIJLs9OjobGsJYke3lJAENDMIlx2ffj+bhvFPMrcBaXBOS7nlFXf959bwxf+DTAPjKAgphxBWiAJXLqnnnt89xINDVt3CKQ4ZpRLgCLJSCeUd986nUogew0EZlFA24DQEOwlGlxKTuYVCOYXYEgXTIfnQBWWFDXjTuTueHGj+80CNBlwtUOYNN3n65MfXsZmcj9+kKFJ+4mR6yrdk06gWUfmZ5j3SE/jqPSH4tDuyny78Wbpt8DVdQFTBuKQQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMS0wMS0yOFQyMjo0Nzo1My0wODowMKROcskAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTEtMDEtMjhUMjI6NDc6NTMtMDg6MDDVE8p1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAABJRU5ErkJggg==" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        </g></Content></Page><Page><Properties><Property name="name">Detail</Property><Property name="id">1462437460708_9744</Property><Property name="width">1027</Property><Property name="height">1194</Property><Property name="dimBackground"/><Property name="transparentBackground">true</Property><Property name="backgroundColor">#FFFFFFFF</Property><Property name="background">transparent</Property></Properties><Content/></Page></Pages></Document>
