@@ -39,4 +39,23 @@ public class Event {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public boolean equals(Object other){
+        if(!other.getClass().equals(this.getClass())) {
+            return false;
+        }
+        Event otherEvt = (Event)other;
+        if(!otherEvt.getName().equals(this.getName())) {
+            return false;
+        }
+        if(!otherEvt.getLocation().equals(this.getLocation())) {
+            return false;
+        }
+        // compare up until seconds for now
+        if( ( (this.getDate().getTime() - otherEvt.getDate().getTime()) / 1000) != 0) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import at.sw2016.getgoing.db.GetGoingDbHelper;
+
 public class GetGoing extends AppCompatActivity {
+    protected GetGoingDbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +20,11 @@ public class GetGoing extends AppCompatActivity {
         setContentView(R.layout.activity_get_going);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        dbHelper = new GetGoingDbHelper(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addEvent);
+        assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,6 +32,7 @@ public class GetGoing extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
 
     @Override
@@ -48,5 +55,9 @@ public class GetGoing extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public GetGoingDbHelper getDBHelper() {
+        return dbHelper;
     }
 }
