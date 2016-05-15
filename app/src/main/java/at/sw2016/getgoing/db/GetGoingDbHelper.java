@@ -6,12 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import at.sw2016.getgoing.Event;
 import at.sw2016.getgoing.db.GetGoingContract.*;
@@ -21,7 +18,7 @@ import at.sw2016.getgoing.db.GetGoingContract.*;
  */
 public class GetGoingDbHelper extends SQLiteOpenHelper{
 
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "GetGoing.db";
 
     public GetGoingDbHelper(Context context){
@@ -68,6 +65,26 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
         }
     }
 
+    public void deleteEvent(Event evt){
+        try{
+            SQLiteDatabase db = getWritableDatabase();
+            String eventName = evt.getName();
+            String eventLoc = evt.getLocation();
+            String evtDateString = GetGoingContract.DB_DATE_FORMAT.format(evt.getDate());
+
+            String tableName = EventEntry.TABLE_NAME;
+            String whereClause = EventEntry.COLUMN_NAME_EVENT_NAME + "=?" + " and " +
+                                    EventEntry.COLUMN_NAME_EVENT_LOC + "=?" + " and " +
+                                    EventEntry.COLUMN_NAME_EVENT_DATE + "=?";
+            String[] whereArgs = new String[]{ String.valueOf(eventName),
+                                               String.valueOf(eventLoc),
+                                               String.valueOf(evtDateString)};
+            db.delete(tableName, whereClause, whereArgs);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
     public List<Event> getAllEvents(){
         ArrayList<Event> events = new ArrayList<>();
         try{
@@ -80,7 +97,6 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
                     String evtLoc = c.getString(2);
                     String dateString = c.getString(3);
                     Date evtDate = GetGoingContract.DB_DATE_FORMAT.parse(dateString);
-
                     Event evt = new Event(evtName, evtLoc, evtDate);
                     events.add(evt);
                 } while (c.moveToNext());

@@ -4,7 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 
 import at.sw2016.getgoing.Event;
@@ -36,10 +36,15 @@ public class DBTest extends ActivityInstrumentationTestCase2<GetGoing> {
 
     public void testReadingWriting() {
         GetGoing gg = (GetGoing)han.getCurrentActivity();
+
         long row = gg.getDBHelper().insertEvent(testEvent);
         assertTrue(row != -1);
+        List<Event> storedEvents = gg.getDBHelper().getAllEvents();
+        assertTrue("Database contains stored event", storedEvents.contains(testEvent));
 
-        ArrayList<Event> storedEvents = new ArrayList<>(gg.getDBHelper().getAllEvents());
-        assertTrue(storedEvents.contains(testEvent));
+        gg.getDBHelper().deleteEvent(testEvent);
+        storedEvents = gg.getDBHelper().getAllEvents();
+        assertFalse("Event was successfully deleted", storedEvents.contains(testEvent));
+
     }
 }
