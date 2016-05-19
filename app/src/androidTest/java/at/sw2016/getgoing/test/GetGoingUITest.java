@@ -12,11 +12,11 @@ import at.sw2016.getgoing.GetGoing;
 /**
  * Created by sschrimpf on 19.04.2016.
  */
-public class UITest extends ActivityInstrumentationTestCase2<GetGoing> {
+public class GetGoingUITest extends ActivityInstrumentationTestCase2<GetGoing> {
 
     private Solo han;
 
-    public UITest() {
+    public GetGoingUITest() {
         super(GetGoing.class);
     }
 
@@ -40,25 +40,13 @@ public class UITest extends ActivityInstrumentationTestCase2<GetGoing> {
         han.getText("Datum:");
     }
 
-    public void testDisplayingOfEvents()
+    public void testDisplayingOfEvent()
     {
-        Event testevent = super.getActivity().getEvents().get(0);
+        Event testevent = super.getActivity().getEvent();
         han.getText(testevent.getName());
         han.getText(testevent.getLocation());
     }
 
-    public void testNextEventButton() throws InterruptedException {
-        han.getText("Next Event >");
-
-        han.clickOnButton("Next Event >");
-
-        han.sleep(10);
-
-        Event testevent = super.getActivity().getEvents().get(1);
-        han.getText(testevent.getName());
-        han.getText(testevent.getLocation());
-
-    }
 
 }
 
