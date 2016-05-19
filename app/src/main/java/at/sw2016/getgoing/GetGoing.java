@@ -5,14 +5,25 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.Button;
+import android.widget.EditText;
 import at.sw2016.getgoing.db.GetGoingDbHelper;
+import java.util.ArrayList;
+import java.util.Date;
 
-public class GetGoing extends AppCompatActivity {
+public class GetGoing extends AppCompatActivity implements View.OnClickListener {
     protected GetGoingDbHelper dbHelper;
+    private EditText nameField;
+    private EditText dateField;
+    private EditText locationField;
+    private Button nextEventButton;
+    private int currenteventposition;
+
+    private ArrayList<Event> events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +34,25 @@ public class GetGoing extends AppCompatActivity {
         dbHelper = new GetGoingDbHelper(this);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addEvent);
-        assert fab != null;
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        events = new ArrayList<>();
+
+        currenteventposition = 0;
+
+        nameField = (EditText) findViewById(R.id.nameField);
+        locationField = (EditText) findViewById(R.id.locationField);
+        dateField = (EditText) findViewById(R.id.dateField);
+
+        nextEventButton = (Button) findViewById(R.id.nextEventButton);
+        nextEventButton.setOnClickListener(this);
+
+
+        Event testevent = new Event("Boaty MCBoatface", "England", new Date(12000));
+        events.add(testevent);
+        displayEvent(testevent);
+        currenteventposition = 0;
+
+        Event testevent2 = new Event("What Iceberg?", "North Pole", new Date(1200000));
+        events.add(testevent2);
 
     }
 
@@ -40,6 +61,19 @@ public class GetGoing extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_get_going, menu);
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Button clickedButton = (Button) v;
+
+        switch (clickedButton.getId()) {
+            case R.id.nextEventButton:
+                displayNextEvent();
+                break;
+            default:
+
+        }
     }
 
     @Override
@@ -59,5 +93,33 @@ public class GetGoing extends AppCompatActivity {
 
     public GetGoingDbHelper getDBHelper() {
         return dbHelper;
+    }
+
+    public void displayEvent(Event e) {
+        this.nameField.setText(e.getName());
+        this.locationField.setText(e.getLocation());
+        this.dateField.setText(e.getDate().toString());
+    }
+
+    public void displayNextEvent() {
+        Event e;
+
+        if (currenteventposition + 1 < events.size()) {
+            e = events.get(currenteventposition + 1);
+            System.out.println(e.getName());
+            currenteventposition++;
+        } else {
+            e = events.get(0);
+            currenteventposition = 0;
+        }
+        displayEvent(e);
+    }
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
     }
 }
