@@ -5,19 +5,23 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class GetGoing extends AppCompatActivity {
+public class GetGoing extends AppCompatActivity implements View.OnClickListener {
 
     private EditText nameField;
     private EditText dateField;
     private EditText locationField;
+    private Button nextEventButton;
+    private int currenteventposition;
 
     private ArrayList<Event> events;
 
@@ -30,13 +34,23 @@ public class GetGoing extends AppCompatActivity {
 
         events = new ArrayList<>();
 
+        currenteventposition = 0;
+
         nameField = (EditText) findViewById(R.id.nameField);
         locationField = (EditText) findViewById(R.id.locationField);
         dateField = (EditText) findViewById(R.id.dateField);
 
+        nextEventButton = (Button) findViewById(R.id.nextEventButton);
+        nextEventButton.setOnClickListener(this);
+
+
         Event testevent = new Event("Boaty MCBoatface", "England", new Date(12000));
         events.add(testevent);
         displayEvent(testevent);
+        currenteventposition = 0;
+
+        Event testevent2 = new Event("What Iceberg?", "North Pole", new Date(1200000));
+        events.add(testevent2);
 
     }
 
@@ -45,6 +59,19 @@ public class GetGoing extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_get_going, menu);
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Button clickedButton = (Button) v;
+
+        switch (clickedButton.getId()) {
+            case R.id.nextEventButton:
+                displayNextEvent();
+                break;
+            default:
+
+        }
     }
 
     @Override
@@ -62,10 +89,24 @@ public class GetGoing extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void displayEvent(Event e){
+    public void displayEvent(Event e) {
         this.nameField.setText(e.getName());
         this.locationField.setText(e.getLocation());
         this.dateField.setText(e.getDate().toString());
+    }
+
+    public void displayNextEvent() {
+        Event e;
+
+        if (currenteventposition + 1 < events.size()) {
+            e = events.get(currenteventposition + 1);
+            System.out.println(e.getName());
+            currenteventposition++;
+        } else {
+            e = events.get(0);
+            currenteventposition = 0;
+        }
+        displayEvent(e);
     }
 
     public ArrayList<Event> getEvents() {

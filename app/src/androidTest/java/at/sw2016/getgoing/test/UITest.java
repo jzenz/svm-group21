@@ -45,8 +45,21 @@ public class UITest extends ActivityInstrumentationTestCase2<GetGoing> {
         Event testevent = super.getActivity().getEvents().get(0);
         han.getText(testevent.getName());
         han.getText(testevent.getLocation());
-        han.getText(testevent.getDate().toString());
     }
+
+    public void testNextEventButton() throws InterruptedException {
+        han.getText("Next Event >");
+
+        han.clickOnButton("Next Event >");
+
+        han.sleep(10);
+
+        Event testevent = super.getActivity().getEvents().get(1);
+        han.getText(testevent.getName());
+        han.getText(testevent.getLocation());
+
+    }
+
 }
 
 
