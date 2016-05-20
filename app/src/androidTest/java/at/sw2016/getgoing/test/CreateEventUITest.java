@@ -2,15 +2,10 @@ package at.sw2016.getgoing.test;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.robotium.solo.Solo;
 
-import java.util.ArrayList;
-
 import at.sw2016.getgoing.CreateEventActivity;
-import at.sw2016.getgoing.Event;
-import at.sw2016.getgoing.EventOverview;
 import at.sw2016.getgoing.R;
 
 /**
@@ -38,9 +33,11 @@ public class CreateEventUITest extends ActivityInstrumentationTestCase2<CreateEv
     {
         EditText nameField = (EditText) han.getCurrentActivity().findViewById(R.id.nameField);
         EditText locationField = (EditText) han.getCurrentActivity().findViewById(R.id.locationField);
+        EditText dateField = (EditText) han.getCurrentActivity().findViewById(R.id.dateField);
 
         han.enterText(nameField,"napoleon");
         han.enterText(locationField,"waterloo");
+        han.enterText(dateField,"20.5.2010");
 
         han.clickOnView(han.getView(R.id.action_done));
         han.sleep(50);
@@ -48,6 +45,33 @@ public class CreateEventUITest extends ActivityInstrumentationTestCase2<CreateEv
         han.getText("Get Going!");
         han.getText("napoleon");
         han.getText("waterloo");
+
+    }
+
+    public void testEditingOfEvent(){
+        testCreatingOfEvents();
+
+        han.clickOnText("napoleon");
+        han.sleep(5000);
+
+        EditText nameField = (EditText) han.getCurrentActivity().findViewById(R.id.nameField);
+        EditText locationField = (EditText) han.getCurrentActivity().findViewById(R.id.locationField);
+        EditText dateField = (EditText) han.getCurrentActivity().findViewById(R.id.dateField);
+
+        han.clearEditText(nameField);
+        han.clearEditText(locationField);
+        han.clearEditText(dateField);
+        han.enterText(nameField,"Ceasar");
+        han.enterText(locationField,"Brutus");
+        han.enterText(dateField,"01.01.0010");
+
+        han.sleep(5000);
+        han.clickOnView(han.getView(R.id.action_done));
+        han.sleep(10);
+
+        han.getText("Get Going!");
+        han.getText("Ceasar");
+        han.getText("Brutus");
 
     }
 

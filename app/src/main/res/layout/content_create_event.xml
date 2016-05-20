@@ -58,9 +58,11 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
         android:id="@+id/dateField"
-        android:layout_below="@+id/locationField"
-        android:layout_toEndOf="@+id/textView3"
-        android:layout_marginTop="15dp" />
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3" />
 
 </RelativeLayout>

@@ -1,25 +1,23 @@
 package at.sw2016.getgoing.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.ArrayAdapter;
 
 import com.robotium.solo.Solo;
 
 import java.util.ArrayList;
 
 import at.sw2016.getgoing.Event;
-import at.sw2016.getgoing.EventOverview;
-import at.sw2016.getgoing.GetGoing;
+import at.sw2016.getgoing.EventOverviewActivity;
 
 /**
  * Created by sschrimpf on 19.04.2016.
  */
-public class EventOverviewUITest extends ActivityInstrumentationTestCase2<EventOverview> {
+public class EventOverviewActivityUITest extends ActivityInstrumentationTestCase2<EventOverviewActivity> {
 
     private Solo han;
 
-    public EventOverviewUITest() {
-        super(EventOverview.class);
+    public EventOverviewActivityUITest() {
+        super(EventOverviewActivity.class);
     }
 
     public void setUp() throws Exception {

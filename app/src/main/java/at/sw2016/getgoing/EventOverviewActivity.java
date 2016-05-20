@@ -2,23 +2,18 @@ package at.sw2016.getgoing;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import at.sw2016.getgoing.GetGoing;
 import at.sw2016.getgoing.gui.MainListViewAdapter;
 
-public class EventOverview extends AppCompatActivity {
+public class EventOverviewActivity extends AppCompatActivity {
 
     private ArrayList<Event> events = new ArrayList<>();
     private ListView mainlistview;
@@ -44,19 +39,10 @@ public class EventOverview extends AppCompatActivity {
 
 
         //TODO: REMOVE THIS!
-        if(events.get(0) != null) {
-            Event testevent = new Event("Boaty MCBoatface", "England", new Date(12000));
+        if(events.isEmpty()) {
+            Event testevent = new Event("Testevent", "Nowhere", new Date(12000));
             events.add(testevent);
         }
-//
-//        Event testevent2 = new Event("What Iceberg?", "North Pole", new Date(1200000));
-//        events.add(testevent2);
-//
-//        Event testevent3 = new Event("Titanic", "Below water", new Date(120000000));
-//        events.add(testevent3);
-//
-//        Event testevent4 = new Event("Napoleons Defeat", "Waterloo", new Date(120000000));
-//        events.add(testevent4);
 
         MainListViewAdapter arrayAdapter = new MainListViewAdapter(this , events);
 
@@ -68,7 +54,7 @@ public class EventOverview extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Event selected_event = events.get(position);
-                Intent intent = new Intent(getBaseContext(), GetGoing.class);
+                Intent intent = new Intent(getBaseContext(), EditEventActivity.class);
                 intent.putExtra("EVENT",events.get(position));
                 startActivity(intent);
             }

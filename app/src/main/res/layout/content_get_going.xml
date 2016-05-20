@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="at.sw2016.getgoing.GetGoing"
+    tools:context=".EditEventActivity"
     tools:showIn="@layout/activity_get_going">
 
     <TextView
@@ -43,7 +43,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/nameField"
-        android:editable="false"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/locationField"
         android:layout_marginTop="8dp" />
@@ -52,7 +51,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/locationField"
-        android:editable="false"
         android:layout_below="@+id/nameField"
         android:layout_toEndOf="@+id/textView3"
         android:layout_marginTop="8dp" />
@@ -61,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/dateField"
-        android:editable="false"
+        android:inputType="date"
         android:layout_below="@+id/locationField"
         android:layout_toEndOf="@+id/textView3"
         android:layout_marginTop="15dp" />

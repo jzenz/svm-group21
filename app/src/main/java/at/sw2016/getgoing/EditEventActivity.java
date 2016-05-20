@@ -2,72 +2,91 @@ package at.sw2016.getgoing;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import at.sw2016.getgoing.db.GetGoingDbHelper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class CreateEventActivity extends AppCompatActivity {
-
+public class EditEventActivity extends AppCompatActivity implements View.OnClickListener {
+    protected GetGoingDbHelper dbHelper;
     private EditText nameField;
     private EditText dateField;
     private EditText locationField;
     private Toolbar toolbar;
-    private ArrayList<Event> events;
+
+    private Event event;
 
     private SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+
+    public Event getEvent() {
+        return event;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_event);
+        setContentView(R.layout.activity_get_going);
 
-        events = Model.getInstance().getEvents();
+
+
+        Event e;
+        if(getIntent().getSerializableExtra("EVENT") == null) {
+            event = new Event("Warning", "No event handed over!", new Date(12000));
+        }
+        else {
+            e = (Event) getIntent().getSerializableExtra("EVENT");
+            event = Model.getInstance().getEvent(e.getName(),e.getLocation());
+        }
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        dbHelper = new GetGoingDbHelper(this);
+
 
         nameField = (EditText) findViewById(R.id.nameField);
         locationField = (EditText) findViewById(R.id.locationField);
         dateField = (EditText) findViewById(R.id.dateField);
 
-        dateField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_DONE)
-                {
-                    Date myDate;
-                    try {
-                        myDate = df.parse(dateField.getText().toString());
-                        Log.i("INFO", df.format(myDate));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                        Toast.makeText(getBaseContext(), "Invalid Date!", Toast.LENGTH_LONG).show();
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
 
 
+        displayEvent(event);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    }
 
+    @Override
+    public void onClick(View v) {
+        Button clickedButton = (Button) v;
+
+    }
+
+    public GetGoingDbHelper getDBHelper() {
+        return dbHelper;
+    }
+
+    public void displayEvent(Event e) {
+        this.nameField.setText(e.getName());
+        this.locationField.setText(e.getLocation());
+        this.dateField.setText(df.format(e.getDate()));
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create_event, menu);
+        getMenuInflater().inflate(R.menu.menu_edit_event, menu);
         return true;
     }
 
@@ -89,18 +108,15 @@ public class CreateEventActivity extends AppCompatActivity {
                     d = df.parse(dateField.getText().toString());
                     Log.i("INFO", df.format(d));
                 } catch (ParseException e) {
+                    e.printStackTrace();
                     Toast.makeText(getBaseContext(), "Invalid Date!", Toast.LENGTH_LONG).show();
                     return true;
                 }
-                Event e = new Event(eventname,eventlocation,d);
-                if (Model.getInstance().getEvent(eventname,eventlocation) == null) {
-                    events.add(e);
-                }
-                else
-                {
-                    Toast.makeText(getBaseContext(), "Event already Exists!", Toast.LENGTH_LONG).show();
-                    return true;
-                }
+                event.setName(eventname);
+                event.setLocation(eventlocation);
+                event.setDate(d);
+
+                //TODO: hand event back to Model.
 
                 Intent intent = new Intent(getBaseContext(), EventOverviewActivity.class);
                 startActivity(intent);
@@ -111,4 +127,6 @@ public class CreateEventActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

@@ -1,23 +1,23 @@
 package at.sw2016.getgoing.test;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.EditText;
 
 import com.robotium.solo.Solo;
 
-import java.util.Date;
-
+import at.sw2016.getgoing.EditEventActivity;
 import at.sw2016.getgoing.Event;
-import at.sw2016.getgoing.GetGoing;
+import at.sw2016.getgoing.R;
 
 /**
  * Created by sschrimpf on 19.04.2016.
  */
-public class GetGoingUITest extends ActivityInstrumentationTestCase2<GetGoing> {
+public class editEventUITest extends ActivityInstrumentationTestCase2<EditEventActivity> {
 
     private Solo han;
 
-    public GetGoingUITest() {
-        super(GetGoing.class);
+    public editEventUITest() {
+        super(EditEventActivity.class);
     }
 
     public void setUp() throws Exception {
@@ -30,7 +30,7 @@ public class GetGoingUITest extends ActivityInstrumentationTestCase2<GetGoing> {
     }
 
     public void testForTitle() {
-        han.getText("GetGoing");
+        han.getText("EditEventActivity");
     }
 
     public void testTextLabels()

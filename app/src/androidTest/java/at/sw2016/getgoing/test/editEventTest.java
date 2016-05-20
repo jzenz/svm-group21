@@ -4,17 +4,17 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
 
-import at.sw2016.getgoing.GetGoing;
+import at.sw2016.getgoing.EditEventActivity;
 
 /**
  * Created by Johannes on 10.04.2016.
  */
-public class GetGoingTest extends ActivityInstrumentationTestCase2<GetGoing> {
+public class editEventTest extends ActivityInstrumentationTestCase2<EditEventActivity> {
 
     private Solo han;
 
-    public GetGoingTest() {
-        super(GetGoing.class);
+    public editEventTest() {
+        super(EditEventActivity.class);
     }
 
     public void setUp() throws Exception {
