@@ -102,8 +102,12 @@ public class CreateEventActivity extends AppCompatActivity {
                     return true;
                 }
 
+                Toast.makeText(getBaseContext(), "Event created!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getBaseContext(), EventOverviewActivity.class);
                 startActivity(intent);
+            }
+            else {
+                Toast.makeText(getBaseContext(), "Some information is missing!", Toast.LENGTH_LONG).show();
             }
 
             return false;

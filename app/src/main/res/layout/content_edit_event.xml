@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".EditEventActivity"
-    tools:showIn="@layout/activity_get_going">
+    tools:showIn="@layout/activity_edit_event">
 
     <TextView
         android:layout_width="wrap_content"

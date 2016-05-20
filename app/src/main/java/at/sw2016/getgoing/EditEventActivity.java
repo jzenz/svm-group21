@@ -2,8 +2,6 @@ package at.sw2016.getgoing;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -18,7 +16,6 @@ import at.sw2016.getgoing.db.GetGoingDbHelper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class EditEventActivity extends AppCompatActivity implements View.OnClickListener {
@@ -39,7 +36,7 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_going);
+        setContentView(R.layout.activity_edit_event);
 
 
 
@@ -115,8 +112,7 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
                 event.setName(eventname);
                 event.setLocation(eventlocation);
                 event.setDate(d);
-
-                //TODO: hand event back to Model.
+                Toast.makeText(getBaseContext(), "Changes saved!", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(getBaseContext(), EventOverviewActivity.class);
                 startActivity(intent);
