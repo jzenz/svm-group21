@@ -19,6 +19,7 @@ public final class GetGoingContract {
         public static final String COLUMN_NAME_EVENT_NAME = "name";
         public static final String COLUMN_NAME_EVENT_LOC = "location";
         public static final String COLUMN_NAME_EVENT_DATE = "date";
+        public static final String COLUMN_NAME_EVENT_DESCRIPTION = "desc";
 
         public static final String DB_DATE_FORMAT = "dd-MM-yyyy HH:mm:ss";
     }
