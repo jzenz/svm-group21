@@ -19,6 +19,7 @@ public class DBTest extends ActivityInstrumentationTestCase2<GetGoing> {
     private String evtName = "testEvtName";
     private String evtLoc = "testEvtLoc";
     private Date evtDate = new Date();
+    private String evtDesc = "testEvtDesc";
 
     public DBTest() {
         super(GetGoing.class);
@@ -27,7 +28,7 @@ public class DBTest extends ActivityInstrumentationTestCase2<GetGoing> {
     public void setUp() throws Exception {
         super.setUp();
         han = new Solo(getInstrumentation(), getActivity());
-        testEvent = new Event(evtName, evtLoc, evtDate);
+        testEvent = new Event(evtName, evtLoc, evtDate, evtDesc);
     }
 
     public void tearDown() throws Exception {
@@ -45,6 +46,24 @@ public class DBTest extends ActivityInstrumentationTestCase2<GetGoing> {
         gg.getDBHelper().deleteEvent(testEvent);
         storedEvents = gg.getDBHelper().getAllEvents();
         assertFalse("Event was successfully deleted", storedEvents.contains(testEvent));
+    }
 
+    public void testReadingWriting_withDescription() {
+        GetGoing gg = (GetGoing)han.getCurrentActivity();
+
+        long row = gg.getDBHelper().insertEvent(testEvent);
+        assertTrue(row != -1);
+        List<Event> storedEvents = gg.getDBHelper().getAllEvents();
+        assertTrue("Database contains stored event", storedEvents.contains(testEvent));
+
+        int idx = storedEvents.indexOf(testEvent);
+        Event toCompare = storedEvents.get(idx);
+        assertEquals("Event name matches", testEvent.getName(), toCompare.getName());
+        assertEquals("Event location matches", testEvent.getLocation(), toCompare.getLocation());
+        assertEquals("Event description matches", testEvent.getDescription(), toCompare.getDescription());
+
+        gg.getDBHelper().deleteEvent(testEvent);
+        storedEvents = gg.getDBHelper().getAllEvents();
+        assertFalse("Event was successfully deleted", storedEvents.contains(testEvent));
     }
 }

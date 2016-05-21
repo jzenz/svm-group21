@@ -18,7 +18,7 @@ import at.sw2016.getgoing.db.GetGoingContract.*;
  */
 public class GetGoingDbHelper extends SQLiteOpenHelper{
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "GetGoing.db";
 
     public GetGoingDbHelper(Context context){
@@ -31,7 +31,8 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
                         " (" + EventEntry._ID + "AUTOINCREMENT INTEGER PRIMARY KEY, " +
                         EventEntry.COLUMN_NAME_EVENT_NAME + " TEXT," +
                         EventEntry.COLUMN_NAME_EVENT_LOC + " TEXT," +
-                        EventEntry.COLUMN_NAME_EVENT_DATE + " TEXT)";
+                        EventEntry.COLUMN_NAME_EVENT_DATE + " TEXT," +
+                        EventEntry.COLUMN_NAME_EVENT_DESCRIPTION + " TEXT)";
         db.execSQL(sql);
     }
 
@@ -56,6 +57,7 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
             values.put(EventEntry.COLUMN_NAME_EVENT_DATE,
                        GetGoingContract.DB_DATE_FORMAT.format(evt.getDate()));
             values.put(EventEntry.COLUMN_NAME_EVENT_LOC, evt.getLocation());
+            values.put(EventEntry.COLUMN_NAME_EVENT_DESCRIPTION, evt.getDescription());
 
             rowId = db.insert(EventEntry.TABLE_NAME, EventEntry.COLUMN_NAME_EVENT_NAME, values);
             return rowId;
@@ -97,7 +99,8 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
                     String evtLoc = c.getString(2);
                     String dateString = c.getString(3);
                     Date evtDate = GetGoingContract.DB_DATE_FORMAT.parse(dateString);
-                    Event evt = new Event(evtName, evtLoc, evtDate);
+                    String evtDesc = c.getString(4);
+                    Event evt = new Event(evtName, evtLoc, evtDate, evtDesc);
                     events.add(evt);
                 } while (c.moveToNext());
             }
