@@ -6,7 +6,7 @@ package at.sw2016.getgoing;
 public enum EventType {
 
     BIRTHDAY (R.drawable.birthday),
-    DEFOULT (R.drawable.defaultevent),
+    DEFAULT (R.drawable.defaultevent),
     COCKTAIL(R.drawable.cocktail),
     GRILL (R.drawable.grill);
 

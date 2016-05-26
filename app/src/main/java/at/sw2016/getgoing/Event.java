@@ -5,17 +5,19 @@ import java.util.Date;
 /**
  * Created by Michael on 10.04.2016.
  */
-public class Event {
+public class Event implements Comparable<Event>{
     private String name;
     private String location;
     private Date date;
     private String description;
+    private EventType type;
 
 
     public Event(String name, String loc, Date date) {
         this.name = name;
         this.location = loc;
         this.date = date;
+        this.type = EventType.DEFAULT;
     }
 
     public Event(String name, String loc, Date date, String desc) {
@@ -23,6 +25,7 @@ public class Event {
         this.location = loc;
         this.date = date;
         this.description = desc;
+        this.type = EventType.DEFAULT;
     }
 
 
@@ -58,6 +61,14 @@ public class Event {
         this.description = desc;
     }
 
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object other){
         if(!other.getClass().equals(this.getClass())) {
@@ -71,9 +82,20 @@ public class Event {
             return false;
         }
         // compare up until seconds for now
-        if( ( (this.getDate().getTime() - otherEvt.getDate().getTime()) / 1000) != 0) {
+        if( ( (date.getTime() - otherEvt.getDate().getTime()) / 1000) != 0) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int compareTo(Event another) {
+        return this.date.compareTo((another).getDate());
+    }
+
+    public String getLocationDateString()
+    {
+        return date.getDay() + "." + date.getMonth() + "." + date.getYear() + " - " +
+                getLocation().toString();
     }
 }

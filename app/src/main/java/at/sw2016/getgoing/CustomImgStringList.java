@@ -22,14 +22,13 @@ import at.sw2016.getgoing.R;
  */
 public class CustomImgStringList extends ArrayAdapter<String> {
     private final Activity context;
-    private final Integer[] imageId;
     private final List<Event> events;
 
     public CustomImgStringList(Activity context,
-                      Integer[] imageId, List<Event> events) {
+                      List<Event> events) {
         super(context, R.layout.single_list_item, new String[events.size()]);
         this.context = context;
-        this.imageId = imageId;
+
         this.events = events;
 
     }
