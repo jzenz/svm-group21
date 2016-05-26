@@ -87,6 +87,33 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
         }
     }
 
+    public Event getEvent(int id)
+    {
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+
+
+            Cursor c = db.rawQuery("SELECT * FROM " + EventEntry.TABLE_NAME + " WHERE " +
+                    EventEntry._ID + " = " + id, null);
+            String evtName = c.getString(1);
+            String evtLoc = c.getString(2);
+            String dateString = c.getString(3);
+            Date evtDate = GetGoingContract.DB_DATE_FORMAT.parse(dateString);
+            String evtDesc = c.getString(4);
+            int evtId = c.getInt(0);
+
+            Event evt = new Event(evtName, evtLoc, evtDate, evtDesc, evtId);
+            c.close();
+            return evt;
+            //return null;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+
+    }
+
     public List<Event> getAllEvents(){
         ArrayList<Event> events = new ArrayList<>();
         try{
@@ -100,7 +127,11 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
                     String dateString = c.getString(3);
                     Date evtDate = GetGoingContract.DB_DATE_FORMAT.parse(dateString);
                     String evtDesc = c.getString(4);
-                    Event evt = new Event(evtName, evtLoc, evtDate, evtDesc);
+                    int evtId = c.getInt(0);
+
+                    Event evt = new Event(evtName, evtLoc, evtDate, evtDesc, evtId);
+
+
                     events.add(evt);
                 } while (c.moveToNext());
             }

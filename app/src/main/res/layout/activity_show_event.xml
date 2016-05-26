@@ -22,10 +22,95 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:text="Name"
         android:id="@+id/show_eventname"
         android:layout_below="@+id/reteventlist"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Description"
+        android:id="@+id/show_description"
+        android:layout_below="@+id/show_eventname"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="location"
+        android:id="@+id/show_txt1"
+        android:layout_below="@+id/show_description"
+        android:layout_toEndOf="@+id/reteventlist"
+        android:layout_marginTop="47dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="location"
+        android:id="@+id/show_location"
+        android:layout_below="@+id/show_txt1"
+        android:layout_alignStart="@+id/show_txt1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Date"
+        android:id="@+id/show_txt2"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/show_location" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="date"
+        android:id="@+id/show_date"
+        android:layout_below="@+id/show_txt2"
+        android:layout_alignStart="@+id/show_txt2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="guests"
+        android:id="@+id/show_guests"
+        android:layout_below="@+id/show_date"
+        android:layout_alignStart="@+id/show_date"
+        android:layout_marginTop="51dp" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/show_view1"
+        android:layout_alignBottom="@+id/show_location"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/show_txt1"
+        android:layout_toStartOf="@+id/show_txt1"
+        android:background="@drawable/ic_location" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/show_view2"
+        android:background="@drawable/ic_time"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/show_txt2"
+        android:layout_alignTop="@+id/show_txt2"
+        android:layout_above="@+id/show_guests" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/show_view3"
+        android:background="@drawable/ic_guest"
+        android:layout_alignTop="@+id/show_guests"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/show_guests" />
 
 </RelativeLayout>

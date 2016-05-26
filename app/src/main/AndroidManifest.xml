@@ -24,7 +24,8 @@
         </activity>
         <activity
             android:name=".ShowEvent"
-            android:label="@string/title_activity_show_event">
+            android:label="@string/title_activity_show_event"
+            android:screenOrientation="portrait">
 
         </activity>
     </application>

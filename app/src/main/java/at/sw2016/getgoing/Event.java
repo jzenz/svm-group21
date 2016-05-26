@@ -11,6 +11,7 @@ public class Event implements Comparable<Event>{
     private Date date;
     private String description;
     private EventType type;
+    private int id;
 
 
     public Event(String name, String loc, Date date) {
@@ -26,6 +27,15 @@ public class Event implements Comparable<Event>{
         this.date = date;
         this.description = desc;
         this.type = EventType.DEFAULT;
+    }
+
+    public Event(String name, String loc, Date date, String desc, int id) {
+        this.name = name;
+        this.location = loc;
+        this.date = date;
+        this.description = desc;
+        this.type = EventType.DEFAULT;
+        this.id = id;
     }
 
 
@@ -68,6 +78,10 @@ public class Event implements Comparable<Event>{
     public void setType(EventType type) {
         this.type = type;
     }
+
+    public int getId() { return id; }
+
+
 
     @Override
     public boolean equals(Object other){
