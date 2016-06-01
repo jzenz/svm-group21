@@ -4,6 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import at.sw2016.getgoing.Event;
@@ -40,6 +41,9 @@ public class EventOverviewActivityUITest extends ActivityInstrumentationTestCase
         for (Event e : events) {
             han.getText(e.getName());
             han.getText(e.getLocation());
+            SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+            han.getText(df.format(e.getDate()));
+
         }
     }
 

@@ -5,6 +5,8 @@ import android.widget.EditText;
 
 import com.robotium.solo.Solo;
 
+import java.text.SimpleDateFormat;
+
 import at.sw2016.getgoing.EditEventActivity;
 import at.sw2016.getgoing.Event;
 import at.sw2016.getgoing.R;
@@ -38,6 +40,7 @@ public class editEventUITest extends ActivityInstrumentationTestCase2<EditEventA
         han.getText("Name:");
         han.getText("Ort:");
         han.getText("Datum:");
+        han.getText("Zeit:");
     }
 
     public void testDisplayingOfEvent()
@@ -45,6 +48,10 @@ public class editEventUITest extends ActivityInstrumentationTestCase2<EditEventA
         Event testevent = super.getActivity().getEvent();
         han.getText(testevent.getName());
         han.getText(testevent.getLocation());
+        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        han.getText(df.format(testevent.getDate()));
+        SimpleDateFormat df_time = new SimpleDateFormat("HH:mm");
+        han.getText(df_time.format(testevent.getDate()));
     }
 
 

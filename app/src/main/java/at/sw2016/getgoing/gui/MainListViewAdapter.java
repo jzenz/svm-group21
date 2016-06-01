@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import at.sw2016.getgoing.Event;
@@ -31,9 +32,15 @@ public class MainListViewAdapter  extends ArrayAdapter<Event> {
         // Lookup view for data population
         TextView eventName = (TextView) convertView.findViewById(R.id.eventName);
         TextView eventLocation = (TextView) convertView.findViewById(R.id.eventLocation);
+        TextView eventDate = (TextView) convertView.findViewById(R.id.eventDate);
         // Populate the data into the template view using the data object
         eventName.setText(event.getName());
         eventLocation.setText(event.getLocation());
+
+
+        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+
+        eventDate.setText(df.format(event.getDate()));
         // Return the completed view to render on screen
         return convertView;
     }

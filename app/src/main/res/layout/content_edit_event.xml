@@ -39,6 +39,15 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zeit:"
+        android:id="@+id/textView8"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/dateField"
+        android:layout_alignParentStart="true" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,5 +72,13 @@
         android:layout_below="@+id/locationField"
         android:layout_toEndOf="@+id/textView3"
         android:layout_marginTop="15dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timeField"
+        android:inputType="time"
+        android:layout_below="@+id/dateField"
+        android:layout_alignStart="@+id/dateField" />
 
 </RelativeLayout>

@@ -32,6 +32,16 @@
             android:layout_alignStart="@+id/eventLocation" />
 
         <TextView
+            android:id="@+id/eventDate"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="Date"
+            android:layout_weight="0.17"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_alignTop="@+id/textView7"
+            android:layout_alignStart="@+id/eventLocation" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -48,6 +58,15 @@
             android:id="@+id/textView5"
             android:layout_marginTop="7dp"
             android:layout_below="@+id/eventName"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Datum:"
+            android:id="@+id/textView7"
+            android:layout_below="@+id/eventLocation"
             android:layout_alignParentStart="true" />
     </RelativeLayout>
 </LinearLayout>
