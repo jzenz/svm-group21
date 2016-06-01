@@ -39,19 +39,23 @@ public class ShowEvent extends Activity {
 
         dbHelper = new GetGoingDbHelper(this);
 
-        Event event = dbHelper.getEvent(extras.getInt("id"));
+        Event event = null;
+        event = dbHelper.getEvent(extras.getInt("id"));
 
-
-        /*if(extras.getInt("id")) {
-            event = dbHelper.getEvent(extras.getInt("id"));
-        }*/
         if(event == null)
-           return;;
+           return;
 
+        TextView view_event_description = (TextView) this.findViewById(R.id.show_description);
+        view_event_description.setText(event.getDescription());
 
+        TextView view_event_name = (TextView) this.findViewById(R.id.show_eventname);
+        view_event_name.setText(event.getName());
 
-       TextView description = (TextView) this.findViewById(R.id.show_description);
-        description.setText(""+extras.getInt("id"));
+        TextView view_event_date = (TextView) this.findViewById(R.id.show_date);
+        view_event_date.setText(event.getDateString());
+
+        TextView view_event_location = (TextView) this.findViewById(R.id.show_location);
+        view_event_location.setText(event.getLocation());
 
 
 

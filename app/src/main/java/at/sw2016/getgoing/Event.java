@@ -112,4 +112,10 @@ public class Event implements Comparable<Event>{
         return date.getDay() + "." + date.getMonth() + "." + date.getYear() + " - " +
                 getLocation().toString();
     }
+
+    public  String getDateString()
+    {
+        return date.getDay() + "." + date.getMonth() + "." + date.getYear() + " - " + date.getHours() +
+                ":" + date.getMinutes();
+    }
 }

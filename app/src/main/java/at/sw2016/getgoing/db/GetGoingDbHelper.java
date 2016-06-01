@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,7 +29,7 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE " + EventEntry.TABLE_NAME +
-                        " (" + EventEntry._ID + "AUTOINCREMENT INTEGER PRIMARY KEY, " +
+                        " (" + EventEntry._ID + " INTEGER PRIMARY KEY, " +
                         EventEntry.COLUMN_NAME_EVENT_NAME + " TEXT," +
                         EventEntry.COLUMN_NAME_EVENT_LOC + " TEXT," +
                         EventEntry.COLUMN_NAME_EVENT_DATE + " TEXT," +
@@ -93,22 +94,39 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
             SQLiteDatabase db = getWritableDatabase();
 
 
-            Cursor c = db.rawQuery("SELECT * FROM " + EventEntry.TABLE_NAME + " WHERE " +
-                    EventEntry._ID + " = " + id, null);
-            String evtName = c.getString(1);
-            String evtLoc = c.getString(2);
-            String dateString = c.getString(3);
-            Date evtDate = GetGoingContract.DB_DATE_FORMAT.parse(dateString);
-            String evtDesc = c.getString(4);
-            int evtId = c.getInt(0);
 
-            Event evt = new Event(evtName, evtLoc, evtDate, evtDesc, evtId);
-            c.close();
-            return evt;
-            //return null;
+            String[] whereArgs = new String[]{ String.valueOf(id)};
+
+            Cursor c = db.rawQuery("SELECT * FROM " + EventEntry.TABLE_NAME + " WHERE " +
+                    EventEntry._ID + " =?", whereArgs);
+
+            if(c.moveToFirst())
+            {
+                int evtId = c.getInt(c.getColumnIndex(EventEntry._ID));
+                Log.w("DB", "Get Event " + id + " - " + evtId);
+
+                String evtName = c.getString(1);
+                String evtLoc = c.getString(2);
+                String dateString = c.getString(3);
+                Date evtDate = GetGoingContract.DB_DATE_FORMAT.parse(dateString);
+                String evtDesc = c.getString(4);
+
+
+                Event evt = new Event(evtName, evtLoc, evtDate, evtDesc, evtId);
+
+                c.close();
+
+                return evt;
+            }
+            else
+            {
+                return null;
+            }
+
         }
         catch (Exception e)
         {
+            Log.w("DB ERROR", e.getMessage());
             return null;
         }
 
