@@ -6,13 +6,13 @@ import com.robotium.solo.Solo;
 
 import java.util.Date;
 
+import at.sw2016.getgoing.EditEventActivity;
 import at.sw2016.getgoing.Event;
-import at.sw2016.getgoing.GetGoing;
 
 /**
  * Created by Johannes on 10.04.2016.
  */
-public class EventTest extends ActivityInstrumentationTestCase2<GetGoing> {
+public class EventTest extends ActivityInstrumentationTestCase2<EditEventActivity> {
     private Solo han;
 
     private String evtName = "testEvtName";
@@ -21,7 +21,7 @@ public class EventTest extends ActivityInstrumentationTestCase2<GetGoing> {
     private String evtDesc = "event description goes here";
 
     public EventTest() {
-        super(GetGoing.class);
+        super(EditEventActivity.class);
     }
 
     public void setUp() throws Exception {

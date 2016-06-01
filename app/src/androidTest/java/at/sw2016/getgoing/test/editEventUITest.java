@@ -1,23 +1,23 @@
 package at.sw2016.getgoing.test;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.EditText;
 
 import com.robotium.solo.Solo;
 
-import java.util.Date;
-
+import at.sw2016.getgoing.EditEventActivity;
 import at.sw2016.getgoing.Event;
-import at.sw2016.getgoing.GetGoing;
+import at.sw2016.getgoing.R;
 
 /**
  * Created by sschrimpf on 19.04.2016.
  */
-public class UITest extends ActivityInstrumentationTestCase2<GetGoing> {
+public class editEventUITest extends ActivityInstrumentationTestCase2<EditEventActivity> {
 
     private Solo han;
 
-    public UITest() {
-        super(GetGoing.class);
+    public editEventUITest() {
+        super(EditEventActivity.class);
     }
 
     public void setUp() throws Exception {
@@ -40,25 +40,13 @@ public class UITest extends ActivityInstrumentationTestCase2<GetGoing> {
         han.getText("Datum:");
     }
 
-    public void testDisplayingOfEvents()
+    public void testDisplayingOfEvent()
     {
-        Event testevent = super.getActivity().getEvents().get(0);
+        Event testevent = super.getActivity().getEvent();
         han.getText(testevent.getName());
         han.getText(testevent.getLocation());
     }
 
-    public void testNextEventButton() throws InterruptedException {
-        han.getText("Next Event >");
-
-        han.clickOnButton("Next Event >");
-
-        han.sleep(10);
-
-        Event testevent = super.getActivity().getEvents().get(1);
-        han.getText(testevent.getName());
-        han.getText(testevent.getLocation());
-
-    }
 
 }
 

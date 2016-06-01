@@ -7,13 +7,13 @@ import com.robotium.solo.Solo;
 import java.util.List;
 import java.util.Date;
 
+import at.sw2016.getgoing.EditEventActivity;
 import at.sw2016.getgoing.Event;
-import at.sw2016.getgoing.GetGoing;
 
 /**
  * Created by Michael on 05.05.2016.
  */
-public class DBTest extends ActivityInstrumentationTestCase2<GetGoing> {
+public class DBTest extends ActivityInstrumentationTestCase2<EditEventActivity> {
     private Solo han;
     private Event testEvent;
     private String evtName = "testEvtName";
@@ -22,7 +22,7 @@ public class DBTest extends ActivityInstrumentationTestCase2<GetGoing> {
     private String evtDesc = "testEvtDesc";
 
     public DBTest() {
-        super(GetGoing.class);
+        super(EditEventActivity.class);
     }
 
     public void setUp() throws Exception {
@@ -36,7 +36,7 @@ public class DBTest extends ActivityInstrumentationTestCase2<GetGoing> {
     }
 
     public void testReadingWriting() {
-        GetGoing gg = (GetGoing)han.getCurrentActivity();
+        EditEventActivity gg = (EditEventActivity)han.getCurrentActivity();
 
         long row = gg.getDBHelper().insertEvent(testEvent);
         assertTrue(row != -1);
@@ -49,7 +49,7 @@ public class DBTest extends ActivityInstrumentationTestCase2<GetGoing> {
     }
 
     public void testReadingWriting_withDescription() {
-        GetGoing gg = (GetGoing)han.getCurrentActivity();
+        EditEventActivity gg = (EditEventActivity)han.getCurrentActivity();
 
         long row = gg.getDBHelper().insertEvent(testEvent);
         assertTrue(row != -1);
