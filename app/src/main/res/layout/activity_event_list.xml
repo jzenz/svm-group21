@@ -24,4 +24,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignEnd="@+id/listEvent1"
         />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/list_add"
+        android:background="@drawable/green_add_icon"
+        android:layout_alignBottom="@+id/listEvent1"
+        android:layout_alignEnd="@+id/listEvent1" />
+
 </RelativeLayout>

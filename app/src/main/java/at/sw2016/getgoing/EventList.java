@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.app.Activity;
 
@@ -63,6 +65,15 @@ public class EventList extends Activity {
                 info.putExtra("name", event_list_db.get(position).getName());
                 info.putExtra("id", event_list_db.get(position).getId());
                 startActivity(info);
+            }
+        });
+
+        ImageButton add_button = (ImageButton) findViewById(R.id.list_add);
+        add_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent create = new Intent(EventList.this, CreateEvent.class);
+                startActivity(create);
             }
         });
     }
