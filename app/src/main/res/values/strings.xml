@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">GetGoing</string>
     <string name="action_settings">Settings</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="user_name">user name:</string>
+    <string name="email_id">email id:</string>
+    <string name="tag_line">Tag Line:</string>
+    <string name="about_me">About Me::</string>
 </resources>

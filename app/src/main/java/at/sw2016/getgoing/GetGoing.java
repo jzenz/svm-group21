@@ -22,17 +22,20 @@ public class GetGoing extends AppCompatActivity implements View.OnClickListener 
     private EditText locationField;
     private Button nextEventButton;
     private int currenteventposition;
+    private String userId;
+    private String userName;
 
     private ArrayList<Event> events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        userId = getIntent().getStringExtra("USER_ID");
+        userName = getIntent().getStringExtra("USER_NAME");
         setContentView(R.layout.activity_get_going);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         dbHelper = new GetGoingDbHelper(this);
-
 
         events = new ArrayList<>();
 

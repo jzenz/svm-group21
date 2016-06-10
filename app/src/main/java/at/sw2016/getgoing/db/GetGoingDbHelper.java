@@ -28,7 +28,7 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE " + EventEntry.TABLE_NAME +
-                        " (" + EventEntry._ID + "AUTOINCREMENT INTEGER PRIMARY KEY, " +
+                        " (" + EventEntry._ID + " INTEGER PRIMARY KEY, " +
                         EventEntry.COLUMN_NAME_EVENT_NAME + " TEXT," +
                         EventEntry.COLUMN_NAME_EVENT_LOC + " TEXT," +
                         EventEntry.COLUMN_NAME_EVENT_DATE + " TEXT," +

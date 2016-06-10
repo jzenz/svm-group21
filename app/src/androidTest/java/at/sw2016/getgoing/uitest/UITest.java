@@ -1,4 +1,4 @@
-package at.sw2016.getgoing.test;
+package at.sw2016.getgoing.uitest;
 
 import android.test.ActivityInstrumentationTestCase2;
 
