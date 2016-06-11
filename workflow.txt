@@ -1,0 +1,15 @@
+
+-- change to (existing) branch
+git checkout BRANCH
+
+
+-- create new branch and push it remote
+-- only do it for feature branches from "develop"!
+git checkout -b BRANCH
+git push --set-upstream origin BRANCH
+
+
+-- merge branch B back into branch A (i.e. "feature" into "develop")
+git checkout develop
+git merge --no-ff feature
+git push
