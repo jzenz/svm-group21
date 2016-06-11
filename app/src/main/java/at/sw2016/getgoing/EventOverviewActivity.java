@@ -46,7 +46,7 @@ public class EventOverviewActivity extends AppCompatActivity {
 
         //TODO: REMOVE THIS!
         if(events.isEmpty()) {
-            Event testevent = new Event("Testevent", "Nowhere", new Date(12000));
+            Event testevent = new Event("Testevent", "Nowhere", new Date(116, 10, 20, 17, 00));
             events.add(testevent);
         }
 

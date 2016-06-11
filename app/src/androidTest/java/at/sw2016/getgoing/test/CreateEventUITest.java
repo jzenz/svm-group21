@@ -34,10 +34,12 @@ public class CreateEventUITest extends ActivityInstrumentationTestCase2<CreateEv
         EditText nameField = (EditText) han.getCurrentActivity().findViewById(R.id.nameField);
         EditText locationField = (EditText) han.getCurrentActivity().findViewById(R.id.locationField);
         EditText dateField = (EditText) han.getCurrentActivity().findViewById(R.id.dateField);
+        EditText timeField = (EditText) han.getCurrentActivity().findViewById(R.id.timeField);
 
         han.enterText(nameField,"napoleon");
         han.enterText(locationField,"waterloo");
         han.enterText(dateField,"20.5.2010");
+        han.enterText(timeField,"18:00");
 
         han.clickOnView(han.getView(R.id.action_done));
         han.sleep(50);
@@ -45,25 +47,29 @@ public class CreateEventUITest extends ActivityInstrumentationTestCase2<CreateEv
         han.getText("Get Going!");
         han.getText("napoleon");
         han.getText("waterloo");
+        han.getText("20.05.2010 18:00");
 
     }
 
     public void testEditingOfEvent(){
-        testCreatingOfEvents();
 
+        testCreatingOfEvents();
         han.clickOnText("napoleon");
         han.sleep(5000);
 
         EditText nameField = (EditText) han.getCurrentActivity().findViewById(R.id.nameField);
         EditText locationField = (EditText) han.getCurrentActivity().findViewById(R.id.locationField);
         EditText dateField = (EditText) han.getCurrentActivity().findViewById(R.id.dateField);
+        EditText timeField = (EditText) han.getCurrentActivity().findViewById(R.id.timeField);
 
         han.clearEditText(nameField);
         han.clearEditText(locationField);
         han.clearEditText(dateField);
+        han.clearEditText(timeField);
         han.enterText(nameField,"Ceasar");
         han.enterText(locationField,"Brutus");
         han.enterText(dateField,"01.01.0010");
+        han.enterText(timeField,"10:00");
 
         han.sleep(5000);
         han.clickOnView(han.getView(R.id.action_done));
@@ -72,6 +78,7 @@ public class CreateEventUITest extends ActivityInstrumentationTestCase2<CreateEv
         han.getText("Get Going!");
         han.getText("Ceasar");
         han.getText("Brutus");
+        han.getText("01.01.0010 10:00");
 
     }
 

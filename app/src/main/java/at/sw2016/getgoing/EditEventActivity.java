@@ -21,11 +21,14 @@ import java.util.Date;
 public class EditEventActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText nameField;
     private EditText dateField;
+    private EditText timeField;
     private EditText locationField;
     private Toolbar toolbar;
 
     private Event event;
     private SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+    private SimpleDateFormat df_all = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+    private SimpleDateFormat df_withou_time = new SimpleDateFormat("HH:mm");
 
     public Event getEvent() {
         return event;
@@ -40,7 +43,7 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
 
         Event e;
         if(getIntent().getSerializableExtra("EVENT") == null) {
-            event = new Event("Warning", "No event handed over!", new Date(12000));
+            event = new Event("Warning", "No event handed over!", new Date(116, 10, 20, 17, 00));
         }
         else {
             e = (Event) getIntent().getSerializableExtra("EVENT");
@@ -53,6 +56,7 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
         nameField = (EditText) findViewById(R.id.nameField);
         locationField = (EditText) findViewById(R.id.locationField);
         dateField = (EditText) findViewById(R.id.dateField);
+        timeField = (EditText) findViewById(R.id.timeField);
 
         displayEvent(event);
     }
@@ -67,6 +71,7 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
         this.nameField.setText(e.getName());
         this.locationField.setText(e.getLocation());
         this.dateField.setText(df.format(e.getDate()));
+        this.timeField.setText(df_withou_time.format(e.getDate()));
     }
 
     @Override
@@ -91,8 +96,8 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
             if(!eventname.isEmpty() && !eventlocation.isEmpty()) {
                 Date d = new Date();
                 try {
-                    d = df.parse(dateField.getText().toString());
-                    Log.i("INFO", df.format(d));
+                    d = df_all.parse(dateField.getText().toString() + " " + timeField.getText().toString());
+                    Log.i("INFO", df_all.format(d));
                 } catch (ParseException e) {
                     e.printStackTrace();
                     Toast.makeText(getBaseContext(), "Invalid Date!", Toast.LENGTH_LONG).show();
