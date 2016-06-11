@@ -19,14 +19,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class EditEventActivity extends AppCompatActivity implements View.OnClickListener {
-    protected GetGoingDbHelper dbHelper;
     private EditText nameField;
     private EditText dateField;
     private EditText locationField;
     private Toolbar toolbar;
 
     private Event event;
-
     private SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 
     public Event getEvent() {
@@ -38,7 +36,7 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_event);
 
-
+        Intent test = getIntent();
 
         Event e;
         if(getIntent().getSerializableExtra("EVENT") == null) {
@@ -46,32 +44,23 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
         }
         else {
             e = (Event) getIntent().getSerializableExtra("EVENT");
-            event = Model.getInstance().getEvent(e.getName(),e.getLocation());
+            event = Model.getInstance().getEvent(e.getName(), e.getLocation());
         }
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        dbHelper = new GetGoingDbHelper(this);
-
 
         nameField = (EditText) findViewById(R.id.nameField);
         locationField = (EditText) findViewById(R.id.locationField);
         dateField = (EditText) findViewById(R.id.dateField);
 
-
-
         displayEvent(event);
-
     }
 
     @Override
     public void onClick(View v) {
         Button clickedButton = (Button) v;
 
-    }
-
-    public GetGoingDbHelper getDBHelper() {
-        return dbHelper;
     }
 
     public void displayEvent(Event e) {

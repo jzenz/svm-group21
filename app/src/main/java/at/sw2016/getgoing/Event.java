@@ -7,6 +7,7 @@ import java.util.Date;
  * Created by Michael on 10.04.2016.
  */
 public class Event implements Serializable {
+    private long id;
     private String name;
     private String location;
     private Date date;
@@ -14,18 +15,19 @@ public class Event implements Serializable {
 
 
     public Event(String name, String loc, Date date){
+        this.id = -1;
         this.name = name;
         this.location = loc;
         this.date = date;
     }
 
     public Event(String name, String loc, Date date, String desc) {
+        this.id = -1;
         this.name = name;
         this.location = loc;
         this.date = date;
         this.description = desc;
     }
-
 
     public String getName() {
         return name;
@@ -57,6 +59,14 @@ public class Event implements Serializable {
 
     public void setDescription(String desc){
         this.description = desc;
+    }
+
+    public long getId(){
+        return this.id;
+    }
+
+    public void setId(long newID){
+        this.id = newID;
     }
 
     @Override
