@@ -1,5 +1,6 @@
 package at.sw2016.getgoing;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,11 @@ import java.util.Date;
 import at.sw2016.getgoing.gui.MainListViewAdapter;
 
 public class EventOverviewActivity extends AppCompatActivity {
+    private static Context context = MainApplication.getAppContext();
+
+    public Context getContext(){
+        return context;
+    }
 
     private ArrayList<Event> events = new ArrayList<>();
     private ListView mainlistview;
@@ -22,6 +28,7 @@ public class EventOverviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventOverviewActivity.context = getApplicationContext();
         setContentView(R.layout.activity_event_overview);
 
         events = Model.getInstance().getEvents();
@@ -37,7 +44,6 @@ public class EventOverviewActivity extends AppCompatActivity {
             }
         });
 
-
         //TODO: REMOVE THIS!
         if(events.isEmpty()) {
             Event testevent = new Event("Testevent", "Nowhere", new Date(12000));
@@ -49,13 +55,12 @@ public class EventOverviewActivity extends AppCompatActivity {
         arrayAdapter.notifyDataSetChanged();
         mainlistview.setAdapter(arrayAdapter);
 
-
         mainlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Event selected_event = events.get(position);
                 Intent intent = new Intent(getBaseContext(), EditEventActivity.class);
-                intent.putExtra("EVENT",events.get(position));
+                intent.putExtra("EVENT", selected_event);
                 startActivity(intent);
             }
         });

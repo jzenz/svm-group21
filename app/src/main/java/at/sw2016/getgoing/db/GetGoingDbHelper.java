@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,11 +18,8 @@ import at.sw2016.getgoing.db.GetGoingContract.*;
  * Created by Michael on 05.05.2016.
  */
 public class GetGoingDbHelper extends SQLiteOpenHelper{
-
-
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "GetGoing.db";
-
 
     public GetGoingDbHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -30,7 +28,7 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE " + EventEntry.TABLE_NAME +
-                        " (" + EventEntry._ID + "AUTOINCREMENT INTEGER PRIMARY KEY, " +
+                        " (" + EventEntry._ID + " INTEGER PRIMARY KEY, " +
                         EventEntry.COLUMN_NAME_EVENT_NAME + " TEXT," +
                         EventEntry.COLUMN_NAME_EVENT_LOC + " TEXT," +
                         EventEntry.COLUMN_NAME_EVENT_DATE + " TEXT," +
@@ -89,7 +87,27 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
         }
     }
 
+    public void updateEvent(Event evt){
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            ContentValues newValues = new ContentValues();
+            newValues.put(EventEntry.COLUMN_NAME_EVENT_NAME, evt.getName());
+            newValues.put(EventEntry.COLUMN_NAME_EVENT_LOC, evt.getLocation());
+            newValues.put(EventEntry.COLUMN_NAME_EVENT_DATE,  GetGoingContract.DB_DATE_FORMAT.format(evt.getDate()));
+            newValues.put(EventEntry.COLUMN_NAME_EVENT_DESCRIPTION, evt.getDescription());
+
+            db.update(EventEntry.TABLE_NAME, newValues, "_id=" + evt.getId(),null);
+
+
+        }
+        catch (Exception ex){
+
+            ex.printStackTrace();
+        }
+    }
+
     public List<Event> getAllEvents(){
+
         ArrayList<Event> events = new ArrayList<>();
         try{
             SQLiteDatabase db = this.getReadableDatabase();
@@ -97,12 +115,15 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
 
             if(c.moveToFirst()) {
                 do {
+                    long evtId = c.getLong(0);
                     String evtName = c.getString(1);
+                    Log.i("DB", "NAME: " + evtName);
                     String evtLoc = c.getString(2);
                     String dateString = c.getString(3);
                     Date evtDate = GetGoingContract.DB_DATE_FORMAT.parse(dateString);
                     String evtDesc = c.getString(4);
                     Event evt = new Event(evtName, evtLoc, evtDate, evtDesc);
+                    evt.setId(evtId);
                     events.add(evt);
                 } while (c.moveToNext());
             }

@@ -80,11 +80,11 @@ public class CreateEventActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_done) {
-            String eventname = nameField.getText().toString();
-            String eventlocation = locationField.getText().toString();
+            String eventName = nameField.getText().toString();
+            String eventLocation = locationField.getText().toString();
 
-            if(!eventname.isEmpty() && !eventlocation.isEmpty()) {
-                Date d = new Date();
+            if(!eventName.isEmpty() && !eventLocation.isEmpty()) {
+                Date d;
                 try {
                     d = df.parse(dateField.getText().toString());
                     Log.i("INFO", df.format(d));
@@ -92,13 +92,12 @@ public class CreateEventActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Invalid Date!", Toast.LENGTH_LONG).show();
                     return true;
                 }
-                Event e = new Event(eventname,eventlocation,d);
-                if (Model.getInstance().getEvent(eventname,eventlocation) == null) {
-                    events.add(e);
+                Event e = new Event(eventName,eventLocation,d);
+                if (Model.getInstance().getEvent(eventName,eventLocation) == null) {
+                    Model.getInstance().addEvent(e);
                 }
-                else
-                {
-                    Toast.makeText(getBaseContext(), "Event already Exists!", Toast.LENGTH_LONG).show();
+                else {
+                    Toast.makeText(getBaseContext(), "Event already exists!", Toast.LENGTH_LONG).show();
                     return true;
                 }
 
