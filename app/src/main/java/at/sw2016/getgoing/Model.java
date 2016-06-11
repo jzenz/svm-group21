@@ -54,5 +54,9 @@ public class Model {
             i += 4;
         }
     }
+    public void updateEvent(Event e) {
+        dbHelper.updateEvent(e);
+
+    }
 
 }

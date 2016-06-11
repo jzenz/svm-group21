@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -87,10 +88,26 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
     }
 
     public void updateEvent(Event evt){
-        long row_id = evt.getId();
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            ContentValues newValues = new ContentValues();
+            newValues.put(EventEntry.COLUMN_NAME_EVENT_NAME, evt.getName());
+            newValues.put(EventEntry.COLUMN_NAME_EVENT_LOC, evt.getLocation());
+            newValues.put(EventEntry.COLUMN_NAME_EVENT_DATE,  GetGoingContract.DB_DATE_FORMAT.format(evt.getDate()));
+            newValues.put(EventEntry.COLUMN_NAME_EVENT_DESCRIPTION, evt.getDescription());
+
+            db.update(EventEntry.TABLE_NAME, newValues, "_id=" + evt.getId(),null);
+
+
+        }
+        catch (Exception ex){
+
+            ex.printStackTrace();
+        }
     }
 
     public List<Event> getAllEvents(){
+
         ArrayList<Event> events = new ArrayList<>();
         try{
             SQLiteDatabase db = this.getReadableDatabase();
@@ -100,6 +117,7 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
                 do {
                     long evtId = c.getLong(0);
                     String evtName = c.getString(1);
+                    Log.i("DB", "NAME: " + evtName);
                     String evtLoc = c.getString(2);
                     String dateString = c.getString(3);
                     Date evtDate = GetGoingContract.DB_DATE_FORMAT.parse(dateString);

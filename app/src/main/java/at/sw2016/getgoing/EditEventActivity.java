@@ -101,6 +101,8 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
                 event.setName(eventname);
                 event.setLocation(eventlocation);
                 event.setDate(d);
+                Model.getInstance().updateEvent(event);
+
                 Toast.makeText(getBaseContext(), "Changes saved!", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(getBaseContext(), EventOverviewActivity.class);
