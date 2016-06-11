@@ -9,6 +9,7 @@ import java.util.Date;
 
 import at.sw2016.getgoing.EditEventActivity;
 import at.sw2016.getgoing.Event;
+import at.sw2016.getgoing.Model;
 
 /**
  * Created by Michael on 05.05.2016.
@@ -37,23 +38,22 @@ public class DBTest extends ActivityInstrumentationTestCase2<EditEventActivity> 
 
     public void testReadingWriting() {
         EditEventActivity gg = (EditEventActivity)han.getCurrentActivity();
-
-        long row = gg.getDBHelper().insertEvent(testEvent);
-        assertTrue(row != -1);
-        List<Event> storedEvents = gg.getDBHelper().getAllEvents();
+        boolean inserted =  Model.getInstance().addEvent(testEvent);
+        assertTrue("Event was added to the database", inserted);
+        List<Event> storedEvents = Model.getInstance().getEvents();
         assertTrue("Database contains stored event", storedEvents.contains(testEvent));
 
-        gg.getDBHelper().deleteEvent(testEvent);
-        storedEvents = gg.getDBHelper().getAllEvents();
+        Model.getInstance().deleteEvent(testEvent);
+        storedEvents = Model.getInstance().getEvents();
         assertFalse("Event was successfully deleted", storedEvents.contains(testEvent));
     }
 
     public void testReadingWriting_withDescription() {
         EditEventActivity gg = (EditEventActivity)han.getCurrentActivity();
 
-        long row = gg.getDBHelper().insertEvent(testEvent);
-        assertTrue(row != -1);
-        List<Event> storedEvents = gg.getDBHelper().getAllEvents();
+        boolean inserted =  Model.getInstance().addEvent(testEvent);
+        assertTrue("Event was added to the database", inserted);
+        List<Event> storedEvents = Model.getInstance().getEvents();
         assertTrue("Database contains stored event", storedEvents.contains(testEvent));
 
         int idx = storedEvents.indexOf(testEvent);
@@ -62,8 +62,8 @@ public class DBTest extends ActivityInstrumentationTestCase2<EditEventActivity> 
         assertEquals("Event location matches", testEvent.getLocation(), toCompare.getLocation());
         assertEquals("Event description matches", testEvent.getDescription(), toCompare.getDescription());
 
-        gg.getDBHelper().deleteEvent(testEvent);
-        storedEvents = gg.getDBHelper().getAllEvents();
+        Model.getInstance().deleteEvent(testEvent);
+        storedEvents = Model.getInstance().getEvents();
         assertFalse("Event was successfully deleted", storedEvents.contains(testEvent));
     }
 }
