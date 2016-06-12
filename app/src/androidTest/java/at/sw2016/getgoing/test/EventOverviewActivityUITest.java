@@ -47,6 +47,12 @@ public class EventOverviewActivityUITest extends ActivityInstrumentationTestCase
         }
     }
 
+    public void testLoginButton()
+    {
+        han.clickOnMenuItem("Login");
+        han.getText("Sign in");
+    }
+
 
 }
 
