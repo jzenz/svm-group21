@@ -65,18 +65,44 @@ public class Model {
 
     }
 
-    public boolean getUser(String username, String password)
+    public boolean getUser(String username)
     {
 
         if (!dbHelper.checkUsername(username))
         {
             loged_in = true;
+            return true;
         }
         else
         {
             return false;
         }
-        return true;
+
+    }
+
+    public boolean createUser(String username, String pw)
+    {
+        long status = dbHelper.insertUser(username, pw);
+        if (status > -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public boolean checkUserPW(String username, String pw)
+    {
+
+        return dbHelper.checkUserPW(username, pw);
+    }
+
+    public void setUser(String username)
+    {
+        this.username = username;
+        this.loged_in = true;
     }
 
 

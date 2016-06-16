@@ -40,7 +40,7 @@ public class CreateEventActivity extends AppCompatActivity {
                     nameField = (EditText) findViewById(R.id.nameField);
                     locationField = (EditText) findViewById(R.id.locationField);
                     dateField = (EditText) findViewById(R.id.dateField);
-                    timeField =  viewById;
+                    timeField = (EditText) findViewById(R.id.timeField);
 
 
                     dateField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -95,7 +95,6 @@ public class CreateEventActivity extends AppCompatActivity {
                 Date d = new Date();
 
                 try {
-
                     d = df.parse(dateField.getText().toString() + " " + timeField.getText().toString());
                     Log.i("INFO", df.format(d));
                 } catch (ParseException e) {

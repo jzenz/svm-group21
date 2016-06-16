@@ -23,8 +23,12 @@
             android:label="@string/create_event"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".login.CreateAccountActivity"
+            android:label="@string/title_activity_create_account"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".EventOverviewActivity"

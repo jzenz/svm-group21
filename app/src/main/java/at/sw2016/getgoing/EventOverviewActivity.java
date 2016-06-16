@@ -5,18 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 import at.sw2016.getgoing.gui.MainListViewAdapter;
+import at.sw2016.getgoing.login.LoginActivity;
 
 public class EventOverviewActivity extends AppCompatActivity {
     private static Context context = MainApplication.getAppContext();

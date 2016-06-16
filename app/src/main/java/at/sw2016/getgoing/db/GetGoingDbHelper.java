@@ -189,4 +189,33 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
             return false;
         }
     }
+
+    public boolean checkUserPW(String username, String pw){
+
+
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM " + UserEntry.TABLE_NAME + " WHERE " + UserEntry.COLUMN_NAME_USER_NAME + "='" + username + "' AND " + UserEntry.COLUMN_NAME_USER_PASSWORD +"='" + pw+"'", null);
+            int counter = 0;
+            if(c.moveToFirst()) {
+                do {
+                    counter++;
+                } while (c.moveToNext());
+            }
+            c.close();
+            if (counter > 0)
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        } catch(Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }
