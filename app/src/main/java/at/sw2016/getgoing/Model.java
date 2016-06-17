@@ -1,5 +1,10 @@
 package at.sw2016.getgoing;
 
+import android.util.Log;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +27,8 @@ public class Model {
 
     private Model() {
         events = new ArrayList<>(dbHelper.getAllEvents());
+
+
         loged_in = false;
     }
 

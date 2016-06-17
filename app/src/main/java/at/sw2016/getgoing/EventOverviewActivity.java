@@ -1,15 +1,36 @@
 package at.sw2016.getgoing;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,6 +70,9 @@ public class EventOverviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EventOverviewActivity.context = getApplicationContext();
         setContentView(R.layout.activity_event_overview);
+
+
+        loadData();
 
         events = Model.getInstance().getEvents();
 
@@ -102,5 +126,58 @@ public class EventOverviewActivity extends AppCompatActivity {
 
     public ArrayList<Event> getEvents() {
         return events;
+    }
+
+    public void loadData()
+    {
+        RequestQueue mRequestQueue;
+
+// Instantiate the cache
+
+        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+
+// Set up the network to use HttpURLConnection as the HTTP client.
+        Network network = new BasicNetwork(new HurlStack());
+
+// Instantiate the RequestQueue with the cache and network.
+        mRequestQueue = new RequestQueue(cache, network);
+
+// Start the queue
+        mRequestQueue.start();
+
+        String url = "http://sw2016gr21.esy.es/getAllEvents.php";
+
+        JsonArrayRequest jsonObjReq1 = new
+                    JsonArrayRequest(url,
+                new com.android.volley.Response.Listener<JSONArray>() {
+
+                    @TargetApi(Build.VERSION_CODES.KITKAT)
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d("TAG", response.toString());
+
+                        try {
+
+                            Log.d("JsonArray",response.toString());
+                            for(int i=0;i<response.length();i++){
+                                JSONObject jresponse = response.getJSONObject(i);
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        //pDialog.dismiss();
+
+                    }
+                }, new com.android.volley.Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("TAG", "Error: " + error.getMessage());
+                //pDialog.dismiss();
+
+            }
+        });
+        mRequestQueue.add(jsonObjReq1);
     }
 }

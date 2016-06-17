@@ -1,17 +1,54 @@
 package at.sw2016.getgoing.db;
 
+import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import android.util.Log;
+import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 
 import at.sw2016.getgoing.Event;
+import at.sw2016.getgoing.MainApplication;
 import at.sw2016.getgoing.db.GetGoingContract.*;
 
 /**
@@ -20,13 +57,26 @@ import at.sw2016.getgoing.db.GetGoingContract.*;
 public class GetGoingDbHelper extends SQLiteOpenHelper{
     public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "GetGoing.db";
+    JSONTask asyncTask = new JSONTask();
+
+    private Spinner spinner;
+    private ArrayList<String> students;
+    private JSONArray result;
+    private TextView textViewName;
+    private TextView textViewCourse;
+    private TextView textViewSession;
+
+    private ArrayList<Event> events = new ArrayList<>();
 
     public GetGoingDbHelper(Context context){
+
+
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         String sql = "CREATE TABLE " + EventEntry.TABLE_NAME +
                         " (" + EventEntry._ID + " INTEGER PRIMARY KEY, " +
                         EventEntry.COLUMN_NAME_EVENT_NAME + " TEXT," +
@@ -114,9 +164,51 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
         }
     }
 
-    public List<Event> getAllEvents(){
 
-        ArrayList<Event> events = new ArrayList<>();
+    public List<Event> getAllEvents(){
+/*
+        RequestQueue mRequestQueue;
+
+// Instantiate the cache
+
+        Cache cache = new DiskBasedCache(MainApplication.getAppContext().getCacheDir(), 1024 * 1024); // 1MB cap
+
+// Set up the network to use HttpURLConnection as the HTTP client.
+        Network network = new BasicNetwork(new HurlStack());
+
+// Instantiate the RequestQueue with the cache and network.
+        mRequestQueue = new RequestQueue(cache, network);
+
+// Start the queue
+        mRequestQueue.start();
+
+        String url = "http://sw2016gr21.esy.es/getAllEvents.php";
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("DB","RESP: "+response.toString());
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+
+                    }
+                });
+        mRequestQueue.add(jsObjRequest);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        */
+        return events;
+
+        /*
         try{
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor c = db.rawQuery("SELECT * FROM " + EventEntry.TABLE_NAME, null);
@@ -141,6 +233,7 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
             ex.printStackTrace();
             return null;
         }
+        */
     }
 
     public long insertUser(String username,  String password){
@@ -218,4 +311,7 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
             return false;
         }
     }
+
+
+
 }

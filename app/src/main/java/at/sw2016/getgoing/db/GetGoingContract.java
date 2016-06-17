@@ -21,7 +21,7 @@ public final class GetGoingContract {
         public static final String COLUMN_NAME_EVENT_DATE = "date";
         public static final String COLUMN_NAME_EVENT_DESCRIPTION = "desc";
 
-        public static final String DB_DATE_FORMAT = "dd-MM-yyyy HH:mm:ss";
+        public static final String DB_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     }
 
     public static abstract class UserEntry implements BaseColumns{
