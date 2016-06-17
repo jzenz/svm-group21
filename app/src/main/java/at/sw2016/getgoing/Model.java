@@ -1,6 +1,7 @@
 package at.sw2016.getgoing;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import at.sw2016.getgoing.db.GetGoingDbHelper;
 
@@ -10,6 +11,8 @@ import at.sw2016.getgoing.db.GetGoingDbHelper;
 public class Model {
     private static GetGoingDbHelper dbHelper = new GetGoingDbHelper(MainApplication.getAppContext());
     private static Model ourInstance = new Model();
+    private String username;
+    private boolean loged_in;
 
     public static Model getInstance() {
         return ourInstance;
@@ -19,11 +22,14 @@ public class Model {
 
     private Model() {
         events = new ArrayList<>(dbHelper.getAllEvents());
+        loged_in = false;
     }
 
     public ArrayList<Event> getEvents() {
         return events;
     }
+
+
 
     public Event getEvent(String name, String location)
     {
@@ -59,4 +65,52 @@ public class Model {
 
     }
 
+    public boolean getUser(String username)
+    {
+
+        if (!dbHelper.checkUsername(username))
+        {
+            loged_in = true;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    public boolean createUser(String username, String pw)
+    {
+        long status = dbHelper.insertUser(username, pw);
+        if (status > -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public boolean checkUserPW(String username, String pw)
+    {
+
+        return dbHelper.checkUserPW(username, pw);
+    }
+
+    public void setUser(String username)
+    {
+        this.username = username;
+        this.loged_in = true;
+    }
+
+
+    public boolean isLoged_in() {
+        return loged_in;
+    }
+
+    public void setLoged_in(boolean loged_in) {
+        this.loged_in = loged_in;
+    }
 }

@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">GetGoing</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_event_overview">Get Going!</string>
     <string name="create_event">Create new Event</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_create_account">Create Account!</string>
+
+
+    <!-- Strings related to login -->
 </resources>

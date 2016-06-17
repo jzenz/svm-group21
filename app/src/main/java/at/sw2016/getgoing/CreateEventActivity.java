@@ -28,25 +28,28 @@ public class CreateEventActivity extends AppCompatActivity {
     private ArrayList<Event> events;
 
     private SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+    private EditText viewById;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_event);
+                    protected void onCreate(Bundle savedInstanceState) {
+                    super.onCreate(savedInstanceState);
+                    setContentView(R.layout.activity_create_event);
 
-        events = Model.getInstance().getEvents();
+                    events = Model.getInstance().getEvents();
 
-        nameField = (EditText) findViewById(R.id.nameField);
-        locationField = (EditText) findViewById(R.id.locationField);
-        dateField = (EditText) findViewById(R.id.dateField);
-        timeField = (EditText) findViewById(R.id.timeField);
+                    nameField = (EditText) findViewById(R.id.nameField);
+                    locationField = (EditText) findViewById(R.id.locationField);
+                    dateField = (EditText) findViewById(R.id.dateField);
+                    timeField = (EditText) findViewById(R.id.timeField);
 
-        dateField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_DONE)
-                {
-                    Date myDate;
-                    try {
+
+                    dateField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                        @Override
+                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                            if(actionId == EditorInfo.IME_ACTION_DONE)
+                            {
+                                Date myDate;
+                                try {
 
                         myDate = df.parse(dateField.getText().toString() + " " + timeField.getText().toString());
                         Log.i("INFO", df.format(myDate));
@@ -92,7 +95,6 @@ public class CreateEventActivity extends AppCompatActivity {
                 Date d = new Date();
 
                 try {
-
                     d = df.parse(dateField.getText().toString() + " " + timeField.getText().toString());
                     Log.i("INFO", df.format(d));
                 } catch (ParseException e) {

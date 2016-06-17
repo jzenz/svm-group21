@@ -18,7 +18,7 @@ import at.sw2016.getgoing.db.GetGoingContract.*;
  * Created by Michael on 05.05.2016.
  */
 public class GetGoingDbHelper extends SQLiteOpenHelper{
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "GetGoing.db";
 
     public GetGoingDbHelper(Context context){
@@ -34,12 +34,20 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
                         EventEntry.COLUMN_NAME_EVENT_DATE + " TEXT," +
                         EventEntry.COLUMN_NAME_EVENT_DESCRIPTION + " TEXT)";
         db.execSQL(sql);
+
+        String user = "CREATE TABLE " + UserEntry.TABLE_NAME +
+                " (" + UserEntry._ID + " INTEGER PRIMARY KEY, " +
+                UserEntry.COLUMN_NAME_USER_NAME + " TEXT," +
+                UserEntry.COLUMN_NAME_USER_PASSWORD + " TEXT)";
+        db.execSQL(user);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql = "DROP TABLE IF EXISTS " + EventEntry.TABLE_NAME;
         db.execSQL(sql);
+        String sql1 = "DROP TABLE IF EXISTS " + UserEntry.TABLE_NAME;
+        db.execSQL(sql1);
         onCreate(db);
     }
 
@@ -132,6 +140,82 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
         } catch(Exception ex){
             ex.printStackTrace();
             return null;
+        }
+    }
+
+    public long insertUser(String username,  String password){
+        long rowId;
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(UserEntry.COLUMN_NAME_USER_NAME, username);
+            values.put(UserEntry.COLUMN_NAME_USER_PASSWORD,password);
+
+
+            rowId = db.insert(UserEntry.TABLE_NAME, UserEntry.COLUMN_NAME_USER_NAME, values);
+            return rowId;
+        } catch (Exception ex){
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+
+
+    public boolean checkUsername(String username){
+
+
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM " + UserEntry.TABLE_NAME + " WHERE " + UserEntry.COLUMN_NAME_USER_NAME + "='" + username + "'", null);
+            int counter = 0;
+            if(c.moveToFirst()) {
+                do {
+                    counter++;
+                } while (c.moveToNext());
+            }
+            c.close();
+            if (counter > 0)
+            {
+
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        } catch(Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean checkUserPW(String username, String pw){
+
+
+        try{
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM " + UserEntry.TABLE_NAME + " WHERE " + UserEntry.COLUMN_NAME_USER_NAME + "='" + username + "' AND " + UserEntry.COLUMN_NAME_USER_PASSWORD +"='" + pw+"'", null);
+            int counter = 0;
+            if(c.moveToFirst()) {
+                do {
+                    counter++;
+                } while (c.moveToNext());
+            }
+            c.close();
+            if (counter > 0)
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        } catch(Exception ex){
+            ex.printStackTrace();
+            return false;
         }
     }
 }

@@ -23,4 +23,12 @@ public final class GetGoingContract {
 
         public static final String DB_DATE_FORMAT = "dd-MM-yyyy HH:mm:ss";
     }
+
+    public static abstract class UserEntry implements BaseColumns{
+        public static final String TABLE_NAME = "users";
+        //public static final String COLUMN_NAME_ENTRY_ID = "eventid";
+        public static final String COLUMN_NAME_USER_NAME = "name";
+        public static final String COLUMN_NAME_USER_PASSWORD = "password";
+
+    }
 }
