@@ -32,6 +32,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -45,9 +47,9 @@ public class EventOverviewActivity extends AppCompatActivity {
         return context;
     }
 
-    private ArrayList<Event> events = new ArrayList<>();
     private ListView mainlistview;
     private FloatingActionButton fab;
+    private Model m = Model.getInstance();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,7 +76,6 @@ public class EventOverviewActivity extends AppCompatActivity {
 
         loadData();
 
-        events = Model.getInstance().getEvents();
 
         mainlistview = (ListView) findViewById(R.id.mainListView);
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -87,6 +88,28 @@ public class EventOverviewActivity extends AppCompatActivity {
             }
         });
 
+
+
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_login) {
+            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(intent);
+        }
+        return true;
+    }
+
+
+    public void rebuildEventList(){
+
+        final ArrayList<Event> events = m.getEvents();
         //TODO: REMOVE THIS!
         if(events.isEmpty()) {
             Event testevent = new Event("Testevent", "Nowhere", new Date(116, 10, 20, 17, 00));
@@ -108,24 +131,6 @@ public class EventOverviewActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_login) {
-            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-            startActivity(intent);
-        }
-        return true;
-    }
-
-    public ArrayList<Event> getEvents() {
-        return events;
     }
 
     public void loadData()
@@ -157,13 +162,18 @@ public class EventOverviewActivity extends AppCompatActivity {
                         Log.d("TAG", response.toString());
 
                         try {
-
+                            m.getEvents().clear();
+                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
                             Log.d("JsonArray",response.toString());
                             for(int i=0;i<response.length();i++){
                                 JSONObject jresponse = response.getJSONObject(i);
-
+                                Event e = new Event(jresponse.getString("name"),jresponse.getString("location"),df.parse(jresponse.getString("date")),jresponse.getString("desc"));
+                                m.addEvent(e);
                             }
+                            rebuildEventList();
                         } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (ParseException e) {
                             e.printStackTrace();
                         }
                         //pDialog.dismiss();
