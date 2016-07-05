@@ -26,7 +26,7 @@ public class Model {
     private ArrayList<Event> events;
 
     private Model() {
-        events = new ArrayList<>(dbHelper.getAllEvents());
+        events = new ArrayList<>();
 
 
         loged_in = false;
