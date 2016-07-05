@@ -1,6 +1,7 @@
 package at.sw2016.getgoing.db;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -17,9 +18,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -254,34 +257,6 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
     }
 
 
-    public boolean checkUsername(String username){
-
-
-        try{
-            SQLiteDatabase db = this.getReadableDatabase();
-            Cursor c = db.rawQuery("SELECT * FROM " + UserEntry.TABLE_NAME + " WHERE " + UserEntry.COLUMN_NAME_USER_NAME + "='" + username + "'", null);
-            int counter = 0;
-            if(c.moveToFirst()) {
-                do {
-                    counter++;
-                } while (c.moveToNext());
-            }
-            c.close();
-            if (counter > 0)
-            {
-
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
-        } catch(Exception ex){
-            ex.printStackTrace();
-            return false;
-        }
-    }
 
     public boolean checkUserPW(String username, String pw){
 

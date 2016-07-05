@@ -1,5 +1,6 @@
 package at.sw2016.getgoing;
 
+import android.app.Activity;
 import android.util.Log;
 
 import com.android.volley.RequestQueue;
@@ -72,33 +73,6 @@ public class Model {
 
     }
 
-    public boolean getUser(String username)
-    {
-
-        if (!dbHelper.checkUsername(username))
-        {
-            loged_in = true;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-
-    }
-
-    public boolean createUser(String username, String pw)
-    {
-        long status = dbHelper.insertUser(username, pw);
-        if (status > -1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     public boolean checkUserPW(String username, String pw)
     {

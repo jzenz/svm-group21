@@ -145,7 +145,7 @@ public class EventOverviewActivity extends AppCompatActivity {
 // Start the queue
         mRequestQueue.start();
 
-        String url = "http://sw2016gr21.esy.es/getAllEvents.php";
+            String url = "http://sw2016gr21.esy.es/getAllEvents.php";
 
         JsonArrayRequest jsonObjReq1 = new
                     JsonArrayRequest(url,
