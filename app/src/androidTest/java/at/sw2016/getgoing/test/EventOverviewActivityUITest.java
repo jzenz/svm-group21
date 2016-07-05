@@ -34,7 +34,7 @@ public class EventOverviewActivityUITest extends ActivityInstrumentationTestCase
         han.getText("Get Going!");
     }
 
-
+/*
     public void testDisplayingOfEvents()
     {
         ArrayList<Event> events = super.getActivity().getEvents();
@@ -46,6 +46,7 @@ public class EventOverviewActivityUITest extends ActivityInstrumentationTestCase
 
         }
     }
+    */
 
     public void testLoginButton()
     {

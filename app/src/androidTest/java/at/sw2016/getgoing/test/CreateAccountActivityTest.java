@@ -66,7 +66,8 @@ public class CreateAccountActivityTest extends ActivityInstrumentationTestCase2<
         han.clickOnButton("Create");
         assertTrue(han.waitForText("User Test1 created"));
     }
-*/
+    */
+
     public void testUserExists()
     {
         han.enterText((EditText) han.getCurrentActivity().findViewById(R.id.username), "Test1");

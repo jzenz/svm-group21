@@ -74,11 +74,7 @@ public class Model {
     }
 
 
-    public boolean checkUserPW(String username, String pw)
-    {
 
-        return dbHelper.checkUserPW(username, pw);
-    }
 
     public void setUser(String username)
     {
