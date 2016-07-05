@@ -57,7 +57,7 @@ import at.sw2016.getgoing.db.GetGoingContract.*;
 public class GetGoingDbHelper extends SQLiteOpenHelper{
     public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "GetGoing.db";
-    JSONTask asyncTask = new JSONTask();
+
 
     private Spinner spinner;
     private ArrayList<String> students;
