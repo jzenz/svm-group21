@@ -10,4 +10,6 @@
         <item>Grill</item>
     </string-array>
 
+    <string name="date_format" formatted="false"> %d %d %d </string>
+
 </resources>
