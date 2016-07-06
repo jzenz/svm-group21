@@ -6,6 +6,7 @@ import android.widget.EditText;
 import com.robotium.solo.Solo;
 
 import at.sw2016.getgoing.CreateEventActivity;
+import at.sw2016.getgoing.Model;
 import at.sw2016.getgoing.R;
 
 /**
@@ -31,6 +32,8 @@ public class CreateEventUITest extends ActivityInstrumentationTestCase2<CreateEv
 
     public void testCreatingOfEvents()
     {
+        Model.getInstance().setUser("admin", "test");
+
         han.sleep(1000);
         EditText nameField = (EditText) han.getCurrentActivity().findViewById(R.id.nameField);
         EditText locationField = (EditText) han.getCurrentActivity().findViewById(R.id.locationField);
@@ -58,6 +61,8 @@ public class CreateEventUITest extends ActivityInstrumentationTestCase2<CreateEv
         han.clickOnText("napoleon");
         han.sleep(5000);
 
+
+
         EditText nameField = (EditText) han.getCurrentActivity().findViewById(R.id.nameField);
         EditText locationField = (EditText) han.getCurrentActivity().findViewById(R.id.locationField);
         EditText dateField = (EditText) han.getCurrentActivity().findViewById(R.id.dateField);
@@ -82,8 +87,8 @@ public class CreateEventUITest extends ActivityInstrumentationTestCase2<CreateEv
         han.getText("01.01.0010 10:00");
 
     }
-*/
 
+*/
 
 }
 

@@ -1,18 +1,15 @@
 package at.sw2016.getgoing;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import at.sw2016.getgoing.db.GetGoingDbHelper;
 
 /**
  * Created by sschrimpf on 19.05.2016.
  */
 public class Model {
-    private static GetGoingDbHelper dbHelper = new GetGoingDbHelper(MainApplication.getAppContext());
     private static Model ourInstance = new Model();
     private String username;
     private boolean loged_in;
+    private String password;
 
     public static Model getInstance() {
         return ourInstance;
@@ -21,7 +18,7 @@ public class Model {
     private ArrayList<Event> events;
 
     private Model() {
-        events = new ArrayList<>(dbHelper.getAllEvents());
+        events = new ArrayList<>();
         loged_in = false;
     }
 
@@ -29,7 +26,13 @@ public class Model {
         return events;
     }
 
+    public String getUsername() {
+        return username;
+    }
 
+    public String getPassword() {
+        return password;
+    }
 
     public Event getEvent(String name, String location)
     {
@@ -42,65 +45,18 @@ public class Model {
         return null;
     }
 
-    public boolean addEvent(Event e) {
-        long row = dbHelper.insertEvent(e);
-
-        if(row != -1){
-            e.setId(row);
-        }
+    public void addEvent(Event e) {
         events.add(e);
-        return row != -1;
     }
 
     public void deleteEvent(Event e) {
-        dbHelper.deleteEvent(e);
-        if(events.remove(e) == false){
-            // TODO: SOMETHING?
-            int i = 5;
-            i += 4;
-        }
-    }
-    public void updateEvent(Event e) {
-        dbHelper.updateEvent(e);
+        events.remove(e);
 
     }
 
-    public boolean getUser(String username)
+    public void setUser(String username, String password)
     {
-
-        if (!dbHelper.checkUsername(username))
-        {
-            loged_in = true;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-
-    }
-
-    public boolean createUser(String username, String pw)
-    {
-        long status = dbHelper.insertUser(username, pw);
-        if (status > -1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public boolean checkUserPW(String username, String pw)
-    {
-
-        return dbHelper.checkUserPW(username, pw);
-    }
-
-    public void setUser(String username)
-    {
+        this.password = password;
         this.username = username;
         this.loged_in = true;
     }
@@ -112,5 +68,12 @@ public class Model {
 
     public void setLoged_in(boolean loged_in) {
         this.loged_in = loged_in;
+    }
+
+    public void logOut()
+    {
+        this.username="";
+        this.password="";
+        this.loged_in=false;
     }
 }

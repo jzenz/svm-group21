@@ -1,6 +1,8 @@
 package at.sw2016.getgoing;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +14,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import at.sw2016.getgoing.db.GetGoingDbHelper;
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonArrayRequest;
+
+import org.json.JSONArray;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -43,7 +55,7 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
 
         Event e;
         if(getIntent().getSerializableExtra("EVENT") == null) {
-            event = new Event("Warning", "No event handed over!", new Date(116, 10, 20, 17, 00));
+            event = new Event(0,"Warning", "No event handed over!", new Date(116, 10, 20, 17, 00),"");
         }
         else {
             e = (Event) getIntent().getSerializableExtra("EVENT");
@@ -90,28 +102,50 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_done) {
-            String eventname = nameField.getText().toString();
-            String eventlocation = locationField.getText().toString();
+            String eventname = nameField.getText().toString().replaceAll(" ","%20");
+            String eventlocation = locationField.getText().toString().replaceAll(" ","%20");
+            int eventid = event.getId();
 
             if(!eventname.isEmpty() && !eventlocation.isEmpty()) {
-                Date d = new Date();
+                Date eventdate = new Date();
                 try {
-                    d = df_all.parse(dateField.getText().toString() + " " + timeField.getText().toString());
-                    Log.i("INFO", df_all.format(d));
+                    eventdate = df_all.parse(dateField.getText().toString() + " " + timeField.getText().toString());
+                    Log.i("INFO", df_all.format(eventdate));
                 } catch (ParseException e) {
                     e.printStackTrace();
                     Toast.makeText(getBaseContext(), "Invalid Date!", Toast.LENGTH_LONG).show();
                     return true;
                 }
-                event.setName(eventname);
-                event.setLocation(eventlocation);
-                event.setDate(d);
-                Model.getInstance().updateEvent(event);
 
-                Toast.makeText(getBaseContext(), "Changes saved!", Toast.LENGTH_LONG).show();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
+                String targetURL = "http://sw2016gr21.esy.es/updateEvent.php?user_name="+Model.getInstance().getUsername()+"&password="+Model.getInstance().getPassword()+
+                        "&name="+eventname+"&location="+eventlocation+"&date="+df.format(eventdate).replaceAll(" ","%20")+"&desc=%20&id=" + eventid ;
 
-                Intent intent = new Intent(getBaseContext(), EventOverviewActivity.class);
-                startActivity(intent);
+                Log.d("TARGETURL", targetURL);
+                JsonArrayRequest request = new
+                        JsonArrayRequest(targetURL,
+                        new com.android.volley.Response.Listener<JSONArray>() {
+
+                            @TargetApi(Build.VERSION_CODES.KITKAT)
+                            @Override
+                            public void onResponse(JSONArray response) {
+                                Log.d("TAG", response.toString());
+
+                                Toast.makeText(getBaseContext(), "Changes saved!", Toast.LENGTH_LONG).show();
+
+                                Intent intent = new Intent(getBaseContext(), EventOverviewActivity.class);
+                                startActivity(intent);
+                            }
+                        }, new com.android.volley.Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("TAG", error.getMessage());
+                        Toast.makeText(getBaseContext(), "An Error occured!", Toast.LENGTH_LONG).show();
+                        VolleyLog.d("TAG", "Error: " + error.getMessage());
+                    }
+                });
+                lunchJSONRequest(request);
             }
 
             return false;
@@ -120,5 +154,13 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
         return super.onOptionsItemSelected(item);
     }
 
+    public void lunchJSONRequest(JsonArrayRequest request){
+        RequestQueue mRequestQueue;
+        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+        Network network = new BasicNetwork(new HurlStack());
+        mRequestQueue = new RequestQueue(cache, network);
+        mRequestQueue.start();
+        mRequestQueue.add(request);
+    }
 
 }
