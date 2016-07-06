@@ -1,6 +1,7 @@
 package at.sw2016.getgoing.test;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.EditText;
 
 import com.robotium.solo.Solo;
 
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 
 import at.sw2016.getgoing.Event;
 import at.sw2016.getgoing.EventOverviewActivity;
+import at.sw2016.getgoing.Model;
+import at.sw2016.getgoing.R;
 
 /**
  * Created by sschrimpf on 19.04.2016.
@@ -53,6 +56,18 @@ public class EventOverviewActivityUITest extends ActivityInstrumentationTestCase
         han.clickOnMenuItem("Login");
         han.getText("Sign in");
     }
+
+    public void testLogOutButton()
+    {
+        han.clickOnMenuItem("Login");
+        han.sleep(1000);
+        han.enterText((EditText) han.getCurrentActivity().findViewById(R.id.username), "Test1");
+        han.enterText((EditText) han.getCurrentActivity().findViewById(R.id.password), "123456");
+        han.clickOnButton("Login");
+        han.clickOnMenuItem("Logout");
+
+    }
+
 
 
 }

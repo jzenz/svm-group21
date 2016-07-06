@@ -116,7 +116,7 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
                     Toast.makeText(getBaseContext(), "Invalid Date!", Toast.LENGTH_LONG).show();
                     return true;
                 }
-//TODO: UPDATE EVENT IN DATABASE
+
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
                 String targetURL = "http://sw2016gr21.esy.es/updateEvent.php?user_name="+Model.getInstance().getUsername()+"&password="+Model.getInstance().getPassword()+
                         "&name="+eventname+"&location="+eventlocation+"&date="+df.format(eventdate).replaceAll(" ","%20")+"&desc=%20&id=" + eventid ;
@@ -141,6 +141,7 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("TAG", error.getMessage());
+                        Toast.makeText(getBaseContext(), "An Error occured!", Toast.LENGTH_LONG).show();
                         VolleyLog.d("TAG", "Error: " + error.getMessage());
                     }
                 });

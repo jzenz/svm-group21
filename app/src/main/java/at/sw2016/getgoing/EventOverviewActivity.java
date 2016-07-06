@@ -56,7 +56,7 @@ public class EventOverviewActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         if(Model.getInstance().isLoged_in())
         {
-
+            getMenuInflater().inflate(R.menu.menu_event_overview_logedin, menu);
         }
         else
         {
@@ -102,6 +102,12 @@ public class EventOverviewActivity extends AppCompatActivity {
         if (id == R.id.action_login) {
             Intent intent = new Intent(getBaseContext(), LoginActivity.class);
             startActivity(intent);
+        }
+        if (id == R.id.action_logout) {
+            Model.getInstance().logOut();
+            Intent intent = new Intent(getBaseContext(), EventOverviewActivity.class);
+            startActivity(intent);
+
         }
         return true;
     }
@@ -150,7 +156,7 @@ public class EventOverviewActivity extends AppCompatActivity {
 // Start the queue
         mRequestQueue.start();
 
-            String url = "http://sw2016gr21.esy.es/getAllEvents.php";
+            String url = "http://sw2016gr21.esy.es/getAllEvents.php?user_name="+Model.getInstance().getUsername()+"&password="+ Model.getInstance().getPassword();
 
         JsonArrayRequest jsonObjReq1 = new
                     JsonArrayRequest(url,

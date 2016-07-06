@@ -69,4 +69,11 @@ public class Model {
     public void setLoged_in(boolean loged_in) {
         this.loged_in = loged_in;
     }
+
+    public void logOut()
+    {
+        this.username="";
+        this.password="";
+        this.loged_in=false;
+    }
 }
