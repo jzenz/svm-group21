@@ -11,8 +11,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Cache;
 import com.android.volley.Network;
@@ -49,6 +52,7 @@ public class EventOverviewActivity extends AppCompatActivity {
 
     private ListView mainlistview;
     private FloatingActionButton fab;
+    private ViewStub stub;
     private Model m = Model.getInstance();
 
     @Override
@@ -72,22 +76,37 @@ public class EventOverviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EventOverviewActivity.context = getApplicationContext();
         setContentView(R.layout.activity_event_overview);
-
-
         loadData();
+        stub = (ViewStub) findViewById(R.id.layout_stub);
+
+        if(m.isLoged_in()) {
+
+            stub.setLayoutResource(R.layout.content_event_overview);
+            View inflated = stub.inflate();
+            mainlistview = (ListView) findViewById(R.id.mainListView);
+            fab = (FloatingActionButton) findViewById(R.id.fab);
+
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getBaseContext(), CreateEventActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+        else{
+            stub.setLayoutResource(R.layout.content_event_overview_not_logged_in);
+            View inflated = stub.inflate();
 
 
-        mainlistview = (ListView) findViewById(R.id.mainListView);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), CreateEventActivity.class);
-                startActivity(intent);
-            }
-        });
-
+            final Button login_button = (Button) findViewById(R.id.login_button);
+            login_button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
 
 
     }
