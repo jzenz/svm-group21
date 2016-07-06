@@ -44,7 +44,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
     public void testEmptyFields()
     {
         han.clickOnButton("Login");
-        assertTrue(han.waitForText("Please insert username and password"));
+        assertTrue(han.waitForText("Please insert a username and a password"));
     }
 
     public void testLoginWorked()

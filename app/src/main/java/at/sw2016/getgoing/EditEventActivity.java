@@ -104,7 +104,7 @@ public class EditEventActivity extends AppCompatActivity implements View.OnClick
                 event.setName(eventname);
                 event.setLocation(eventlocation);
                 event.setDate(d);
-                Model.getInstance().updateEvent(event);
+//TODO: UPDATE EVENT IN DATABASE
 
                 Toast.makeText(getBaseContext(), "Changes saved!", Toast.LENGTH_LONG).show();
 
