@@ -65,9 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onClick(View v) {
-
-    }
+    public void onClick(View v) {}
 
     public void checkLogin(View v)
     {
@@ -76,40 +74,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if(!username.getText().toString().isEmpty() && !password.getText().toString().isEmpty())
         {
-
-                checkLoginWorked(username.getText().toString(), password.getText().toString());
-
+            checkForValidCredentials(username.getText().toString(), password.getText().toString());
         }
         else
         {
-            Toast.makeText(getBaseContext(), "Please insert username and password", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Please insert a username and a password", Toast.LENGTH_LONG).show();
         }
 
     }
 
+    public void checkForValidCredentials(final String username, final String password) {
+        String targetURL = "http://sw2016gr21.esy.es/login.php?name="+username+"&password=" + password;
 
-    public void checkLoginWorked (final String username, final String password) {
-
-
-        RequestQueue mRequestQueue;
-        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
-        Network network = new BasicNetwork(new HurlStack());
-        mRequestQueue = new RequestQueue(cache, network);
-        mRequestQueue.start();
-
-        String url = "http://sw2016gr21.esy.es/login.php?name="+username+"&password=" + password;
-
-
-        JsonArrayRequest jsonObjReq1 = new
-                JsonArrayRequest(url,
+        JsonArrayRequest request = new
+                JsonArrayRequest(targetURL,
                 new com.android.volley.Response.Listener<JSONArray>() {
 
                     @TargetApi(Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onResponse(JSONArray response) {
                         Log.d("TAG", response.toString());
-
-
                         Log.d("JsonArray", response.toString());
                         String status =  response.toString();
                         if(status.equals("[\"false\"]")){
@@ -118,14 +102,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                         else if(status.equals("[\"login\"]"))
                         {
-                            loginsuccessfull(username);
+                            loginsuccessfull(username,password);
                         }
-
-
-
-
-                        //pDialog.dismiss();
-
                     }
                 }, new com.android.volley.Response.ErrorListener() {
 
@@ -133,21 +111,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onErrorResponse(VolleyError error) {
                 Log.d("TAG", error.getMessage());
                 VolleyLog.d("TAG", "Error: " + error.getMessage());
-                //pDialog.dismiss();
-
             }
         });
-        mRequestQueue.add(jsonObjReq1);
+
+        lunchJSONRequest(request);
+
 
     }
 
-    public void loginsuccessfull(String username)
+    public void loginsuccessfull(String username, String password)
     {
         Toast.makeText(getBaseContext(), "Login Successful", Toast.LENGTH_LONG).show();
-
-        Model.getInstance().setUser(username);
+        Model.getInstance().setUser(username,password);
         Intent intent = new Intent(getBaseContext(), EventOverviewActivity.class);
         startActivity(intent);
+    }
+
+    public void lunchJSONRequest(JsonArrayRequest request){
+        RequestQueue mRequestQueue;
+        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+        Network network = new BasicNetwork(new HurlStack());
+        mRequestQueue = new RequestQueue(cache, network);
+        mRequestQueue.start();
+        mRequestQueue.add(request);
     }
 
 

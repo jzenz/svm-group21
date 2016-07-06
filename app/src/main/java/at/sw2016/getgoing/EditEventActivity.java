@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import at.sw2016.getgoing.db.GetGoingDbHelper;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

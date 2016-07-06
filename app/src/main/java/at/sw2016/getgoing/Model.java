@@ -1,24 +1,15 @@
 package at.sw2016.getgoing;
 
-import android.app.Activity;
-import android.util.Log;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-
 import java.util.ArrayList;
-import java.util.List;
-
-import at.sw2016.getgoing.db.GetGoingDbHelper;
 
 /**
  * Created by sschrimpf on 19.05.2016.
  */
 public class Model {
-    private static GetGoingDbHelper dbHelper = new GetGoingDbHelper(MainApplication.getAppContext());
     private static Model ourInstance = new Model();
     private String username;
     private boolean loged_in;
+    private String password;
 
     public static Model getInstance() {
         return ourInstance;
@@ -28,8 +19,6 @@ public class Model {
 
     private Model() {
         events = new ArrayList<>();
-
-
         loged_in = false;
     }
 
@@ -50,34 +39,18 @@ public class Model {
         return null;
     }
 
-    public boolean addEvent(Event e) {
-        long row = dbHelper.insertEvent(e);
-
-        if(row != -1){
-            e.setId(row);
-        }
+    public void addEvent(Event e) {
         events.add(e);
-        return row != -1;
     }
 
     public void deleteEvent(Event e) {
-        dbHelper.deleteEvent(e);
-        if(events.remove(e) == false){
-            // TODO: SOMETHING?
-            int i = 5;
-            i += 4;
-        }
-    }
-    public void updateEvent(Event e) {
-        dbHelper.updateEvent(e);
+        events.remove(e);
 
     }
 
-
-
-
-    public void setUser(String username)
+    public void setUser(String username, String password)
     {
+        this.password = password;
         this.username = username;
         this.loged_in = true;
     }

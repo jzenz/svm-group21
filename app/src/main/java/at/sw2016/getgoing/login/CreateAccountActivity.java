@@ -34,7 +34,7 @@ import at.sw2016.getgoing.R;
 /**
  * Created by peisn_000 on 16.06.2016.
  */
-public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener{
+public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     @Override
@@ -45,14 +45,12 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final Button create = (Button) findViewById(R.id.create_button);
-        create.setOnClickListener(new View.OnClickListener() {
+        final Button createButton = (Button) findViewById(R.id.create_button);
+        createButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 createAccount(v);
             }
         });
-
-
     }
 
     @Override
@@ -60,59 +58,27 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    public void createAccount(View v)
-    {
-        String username =  ((EditText) findViewById(R.id.username)).getText().toString();
-        String password =  ((EditText) findViewById(R.id.pw1)).getText().toString();
-        String password_confirm =  ((EditText) findViewById(R.id.pw2)).getText().toString();
+    public void createAccount(View v) {
+        String username = ((EditText) findViewById(R.id.username)).getText().toString();
+        String password = ((EditText) findViewById(R.id.pw1)).getText().toString();
+        String password_confirm = ((EditText) findViewById(R.id.pw2)).getText().toString();
 
-        if(!username.isEmpty() && !password.isEmpty() && !password_confirm.isEmpty() )
-        {
-
-            if(password.equals(password_confirm))
-            {
-
-
-
-                checkUsernameExistsAndInsert(username, password);
-
-            }
-            else
-            {
-
+        if (!username.isEmpty() && !password.isEmpty() && !password_confirm.isEmpty()) {
+            if (password.equals(password_confirm)) {
+                insertNewUserIntoDB(username, password);
+            } else {
                 Toast.makeText(getBaseContext(), "Password does not match the confirm password.", Toast.LENGTH_LONG).show();
             }
-        }
-        else
-        {
+        } else {
             Toast.makeText(getBaseContext(), "Please insert username and password", Toast.LENGTH_LONG).show();
         }
-
-
     }
 
-    public boolean checkUsernameExistsAndInsert(final String username, final String password) {
+    public boolean insertNewUserIntoDB(final String username, final String password) {
+        String url = "http://sw2016gr21.esy.es/createUser.php?name=" + username + "&password=" + password;
 
 
-        RequestQueue mRequestQueue;
-
-// Instantiate the cache
-
-        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
-
-// Set up the network to use HttpURLConnection as the HTTP client.
-        Network network = new BasicNetwork(new HurlStack());
-
-// Instantiate the RequestQueue with the cache and network.
-        mRequestQueue = new RequestQueue(cache, network);
-
-// Start the queue
-        mRequestQueue.start();
-
-        String url = "http://sw2016gr21.esy.es/createUser.php?name="+username+"&password=" + password;
-
-
-        JsonArrayRequest jsonObjReq1 = new
+        JsonArrayRequest request = new
                 JsonArrayRequest(url,
                 new com.android.volley.Response.Listener<JSONArray>() {
 
@@ -120,24 +86,14 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                     @Override
                     public void onResponse(JSONArray response) {
                         Log.d("TAG", response.toString());
-
-
-                            Log.d("JsonArray", response.toString());
-                        String status =  response.toString();
-                        if(status.equals("[\"exists\"]")){
+                        Log.d("JsonArray", response.toString());
+                        String status = response.toString();
+                        if (status.equals("[\"exists\"]")) {
 
                             Toast.makeText(getBaseContext(), "Username already exists", Toast.LENGTH_LONG).show();
-                        }
-                        else if(status.equals("[\"created\"]"))
-                        {
+                        } else if (status.equals("[\"created\"]")) {
                             creationsuccessfull(username, password);
                         }
-
-
-
-
-                        //pDialog.dismiss();
-
                     }
                 }, new com.android.volley.Response.ErrorListener() {
 
@@ -145,21 +101,27 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             public void onErrorResponse(VolleyError error) {
                 Log.d("TAG", error.getMessage());
                 VolleyLog.d("TAG", "Error: " + error.getMessage());
-                //pDialog.dismiss();
-
             }
         });
-        mRequestQueue.add(jsonObjReq1);
+        lunchJSONRequest(request);
 
         return true;
     }
 
-    public void creationsuccessfull(String username, String password)
-    {
-
-        Toast.makeText(getBaseContext(), "User " +username + " created", Toast.LENGTH_LONG).show();
-        Model.getInstance().setUser(username);
+    public void creationsuccessfull(String username, String password) {
+        Toast.makeText(getBaseContext(), "User " + username + " created", Toast.LENGTH_LONG).show();
+        Model.getInstance().setUser(username, password);
         Intent intent = new Intent(getBaseContext(), EventOverviewActivity.class);
         startActivity(intent);
     }
+
+    public void lunchJSONRequest(JsonArrayRequest request) {
+        RequestQueue mRequestQueue;
+        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+        Network network = new BasicNetwork(new HurlStack());
+        mRequestQueue = new RequestQueue(cache, network);
+        mRequestQueue.start();
+        mRequestQueue.add(request);
+    }
+
 }
