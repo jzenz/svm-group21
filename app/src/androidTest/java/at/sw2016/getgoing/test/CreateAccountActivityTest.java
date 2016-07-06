@@ -68,6 +68,24 @@ public class CreateAccountActivityTest extends ActivityInstrumentationTestCase2<
     }
     */
 
+    public void testSpacesInUsername()
+    {
+        han.enterText((EditText) han.getCurrentActivity().findViewById(R.id.username), "Test 1");
+        han.enterText((EditText) han.getCurrentActivity().findViewById(R.id.pw1), "123456");
+        han.enterText((EditText) han.getCurrentActivity().findViewById(R.id.pw2), "123456");
+        han.clickOnButton("Create");
+        assertTrue(han.waitForText("Username and Password may not contain spaces!"));
+    }
+
+    public void testSpacesInPassword()
+    {
+        han.enterText((EditText) han.getCurrentActivity().findViewById(R.id.username), "Test1");
+        han.enterText((EditText) han.getCurrentActivity().findViewById(R.id.pw1), "1234 56");
+        han.enterText((EditText) han.getCurrentActivity().findViewById(R.id.pw2), "1234 56");
+        han.clickOnButton("Create");
+        assertTrue(han.waitForText("Username and Password may not contain spaces!"));
+    }
+
     public void testUserExists()
     {
         han.enterText((EditText) han.getCurrentActivity().findViewById(R.id.username), "Test1");

@@ -51,7 +51,7 @@ public class CreateEventUITest extends ActivityInstrumentationTestCase2<CreateEv
         han.getText("20.05.2010 18:00");
 
     }
-/*
+
     public void testEditingOfEvent(){
 
         testCreatingOfEvents();
@@ -82,7 +82,7 @@ public class CreateEventUITest extends ActivityInstrumentationTestCase2<CreateEv
         han.getText("01.01.0010 10:00");
 
     }
-*/
+
 
 
 }

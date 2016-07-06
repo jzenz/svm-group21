@@ -101,14 +101,14 @@ public class CreateEventActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Invalid Date!", Toast.LENGTH_LONG).show();
                     return true;
                 }
-                Event e = new Event(eventName,eventLocation,d);
+              /*  Event e = new Event(eventName,eventLocation,d);
                 if (Model.getInstance().getEvent(eventName,eventLocation) == null) {
                     Model.getInstance().addEvent(e);
                 }
                 else {
                     Toast.makeText(getBaseContext(), "Event already exists!", Toast.LENGTH_LONG).show();
                     return true;
-                }
+                }*/
 
                 Toast.makeText(getBaseContext(), "Event created!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getBaseContext(), EventOverviewActivity.class);

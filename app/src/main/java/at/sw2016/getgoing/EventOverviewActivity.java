@@ -112,7 +112,7 @@ public class EventOverviewActivity extends AppCompatActivity {
         final ArrayList<Event> events = m.getEvents();
         //TODO: REMOVE THIS!
         if(events.isEmpty()) {
-            Event testevent = new Event("Testevent", "Nowhere", new Date(116, 10, 20, 17, 00));
+            Event testevent = new Event(0,"Warning", "No event handed over!", new Date(116, 10, 20, 17, 00),"");
             events.add(testevent);
         }
 
@@ -167,7 +167,7 @@ public class EventOverviewActivity extends AppCompatActivity {
                             Log.d("JsonArray",response.toString());
                             for(int i=0;i<response.length();i++){
                                 JSONObject jresponse = response.getJSONObject(i);
-                                Event e = new Event(jresponse.getString("name"),jresponse.getString("location"),df.parse(jresponse.getString("date")),jresponse.getString("desc"));
+                                Event e = new Event(jresponse.getInt("id"),jresponse.getString("name"),jresponse.getString("location"),df.parse(jresponse.getString("date")),jresponse.getString("desc"));
                                 m.addEvent(e);
                             }
                             rebuildEventList();

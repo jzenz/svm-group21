@@ -14,11 +14,11 @@ import at.sw2016.getgoing.R;
 /**
  * Created by sschrimpf on 19.04.2016.
  */
-public class editEventUITest extends ActivityInstrumentationTestCase2<EditEventActivity> {
+public class EditEventUITest extends ActivityInstrumentationTestCase2<EditEventActivity> {
 
     private Solo han;
 
-    public editEventUITest() {
+    public EditEventUITest() {
         super(EditEventActivity.class);
     }
 

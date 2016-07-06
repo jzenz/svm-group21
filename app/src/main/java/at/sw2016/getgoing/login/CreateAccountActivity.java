@@ -65,7 +65,11 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
         if (!username.isEmpty() && !password.isEmpty() && !password_confirm.isEmpty()) {
             if (password.equals(password_confirm)) {
-                insertNewUserIntoDB(username, password);
+                if (!username.contains(" ") && !password.contains(" ")) {
+                    insertNewUserIntoDB(username, password);
+                } else {
+                    Toast.makeText(getBaseContext(), "Username and Password may not contain spaces!", Toast.LENGTH_LONG).show();
+                }
             } else {
                 Toast.makeText(getBaseContext(), "Password does not match the confirm password.", Toast.LENGTH_LONG).show();
             }

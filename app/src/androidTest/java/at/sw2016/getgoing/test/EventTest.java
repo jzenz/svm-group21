@@ -41,7 +41,7 @@ public class EventTest extends ActivityInstrumentationTestCase2<EditEventActivit
     }
 
     public void testCtor_NameLocDateDesc() {
-        Event testEvt = new Event(evtName, evtLoc, evtDate, evtDesc);
+        Event testEvt = new Event(0,evtName, evtLoc, evtDate, evtDesc);
         assertEquals(testEvt.getName(), evtName);
         assertEquals(testEvt.getLocation(), evtLoc);
         assertEquals(testEvt.getDate(), evtDate);
@@ -72,7 +72,7 @@ public class EventTest extends ActivityInstrumentationTestCase2<EditEventActivit
 
     public void testSetDescription(){
         String newDescription = "this is the event's new description";
-        Event testEvt = new Event(evtName, evtLoc, evtDate, evtDesc);
+        Event testEvt = new Event(0,evtName, evtLoc, evtDate, evtDesc);
         testEvt.setDescription(newDescription);
         assertEquals("Testing Event.setDescription()", newDescription, testEvt.getDescription());
     }

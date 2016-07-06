@@ -7,26 +7,27 @@ import java.util.Date;
  * Created by Michael on 10.04.2016.
  */
 public class Event implements Serializable {
-    private long id;
+    private int id;
     private String name;
     private String location;
     private Date date;
     private String description;
 
 
-    public Event(String name, String loc, Date date){
-        this.id = -1;
-        this.name = name;
-        this.location = loc;
-        this.date = date;
-    }
-
-    public Event(String name, String loc, Date date, String desc) {
-        this.id = -1;
+    public Event(int id,String name, String loc, Date date, String desc) {
+        this.id = id;
         this.name = name;
         this.location = loc;
         this.date = date;
         this.description = desc;
+    }
+
+    public Event(String evtName, String evtLoc, Date evtDate) {
+        this.id = 0;
+        this.name = evtName;
+        this.location = evtLoc;
+        this.date = evtDate;
+        this.description = " ";
     }
 
     public String getName() {
@@ -61,11 +62,11 @@ public class Event implements Serializable {
         this.description = desc;
     }
 
-    public long getId(){
+    public int getId(){
         return this.id;
     }
 
-    public void setId(long newID){
+    public void setId(int newID){
         this.id = newID;
     }
 
