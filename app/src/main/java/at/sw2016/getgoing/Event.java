@@ -2,6 +2,8 @@ package at.sw2016.getgoing;
 
 import java.util.Date;
 
+import at.sw2016.getgoing.db.GetGoingContract;
+
 /**
  * Created by Michael on 10.04.2016.
  */
@@ -109,13 +111,11 @@ public class Event implements Comparable<Event>{
 
     public String getLocationDateString()
     {
-        return date.getDay() + "." + date.getMonth() + "." + date.getYear() + " - " +
-                getLocation().toString();
+        return GetGoingContract.DB_DATE_FORMAT.format(date) + " - " + getLocation().toString();
     }
 
     public  String getDateString()
     {
-        return date.getDay() + "." + date.getMonth() + "." + date.getYear() + " - " + date.getHours() +
-                ":" + date.getMinutes();
+        return GetGoingContract.DB_DATE_FORMAT.format(date);
     }
 }

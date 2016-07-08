@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,13 +22,16 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.Date;
 
+import at.sw2016.getgoing.db.GetGoingContract;
 import at.sw2016.getgoing.db.GetGoingDbHelper;
 
 public class CreateEvent extends Activity {
 
     protected GetGoingDbHelper dbHelper;
-    private Calendar calendar;
-    private int year, month, day;
+    private Calendar calendar = Calendar.getInstance();;
+    private int year = calendar.get(Calendar.YEAR);
+    private int month = calendar.get(Calendar.MONTH);
+    private int day = calendar.get(Calendar.DAY_OF_MONTH);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +45,7 @@ public class CreateEvent extends Activity {
         final TextView event_date = (TextView) findViewById(R.id.create_showdate);
 
         // init date view
-        calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
         setDateOnView();
-
-
 
         Spinner spinner = (Spinner) findViewById(R.id.create_event_type_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -77,8 +76,7 @@ public class CreateEvent extends Activity {
 
 
         // enter a new date ... show dialog
-        Button set_date = (Button) findViewById(R.id.create_setdate);
-        set_date.setOnClickListener(new View.OnClickListener() {
+        event_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDialog(999);
@@ -120,7 +118,28 @@ public class CreateEvent extends Activity {
                 location = event_location.getText().toString();
                 description = event_description.getText().toString();
 
-                Event event = new Event(name, location, new Date(year,month,day));
+                String[] selected_date = null;
+                Date new_date = null;
+                Resources resources = getResources();
+                try {
+                    Log.d("CreateEvent", "onClick: day = " + day);
+                    Log.d("CreateEvent", "onClick: month = " + month);
+                    Log.d("CreateEvent", "onClick: year = " + year);
+
+                    String date_formated = String.format(resources.getString(R.string.date_format), day,month,year);
+
+                    new_date = GetGoingContract.DB_DATE_FORMAT.parse(date_formated + " 00:00:00");
+                }
+                catch (Exception e)
+                {
+                    event_date.setError("please enter correct date");
+                    event_date.setHint(String.format(resources.getString(R.string.date_format), calendar.get(Calendar.DAY_OF_MONTH),calendar.get(Calendar.MONTH),calendar.get(Calendar.YEAR)));
+                    Log.d("CreateEvent", "onClick: date = " + event_date.getText());
+                    return;
+                }
+
+                Event event = new Event(name, location, new_date);
+                //Event event = new Event(name, location, new Date(year,month,day));
                 event.setDescription(description);
 
                 dbHelper.insertEvent(event);
@@ -146,7 +165,9 @@ public class CreateEvent extends Activity {
     private DatePickerDialog.OnDateSetListener date_listener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-
+            arg3 = arg0.getDayOfMonth();
+            arg2 = arg0.getMonth()+1; // Jan = 0
+            arg1 = arg0.getYear();
             year = arg1;
             month = arg2;
             day = arg3;
@@ -159,7 +180,7 @@ public class CreateEvent extends Activity {
     {
         TextView event_date = (TextView) findViewById(R.id.create_showdate);
         Resources resources = getResources();
-        //String date_string = String.format(resources.getString(R.string.date_format), day,month,year);
-        //event_date.setText(date_string);
+        String date_string = String.format(resources.getString(R.string.date_format), day,month,year);
+        event_date.setText(date_string);
     }
 }
