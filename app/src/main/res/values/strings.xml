@@ -7,7 +7,7 @@
         <item>Default</item>
         <item>Birthday</item>
         <item>Cocktail</item>
-        <item>Grill</item>
+        <item>Barbecue</item>
     </string-array>
 
     <string name="date_format" formatted="false">%d-%d-%d</string>

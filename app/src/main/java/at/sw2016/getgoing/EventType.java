@@ -8,7 +8,7 @@ public enum EventType {
     BIRTHDAY (R.drawable.birthday),
     DEFAULT (R.drawable.defaultevent),
     COCKTAIL(R.drawable.cocktail),
-    GRILL (R.drawable.grill);
+    BARBECUE (R.drawable.grill);
 
     private final int path;
 

@@ -19,7 +19,7 @@ import at.sw2016.getgoing.db.GetGoingContract.*;
  */
 public class GetGoingDbHelper extends SQLiteOpenHelper{
 
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "GetGoing.db";
 
     public GetGoingDbHelper(Context context){
@@ -33,7 +33,8 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
                         EventEntry.COLUMN_NAME_EVENT_NAME + " TEXT," +
                         EventEntry.COLUMN_NAME_EVENT_LOC + " TEXT," +
                         EventEntry.COLUMN_NAME_EVENT_DATE + " TEXT," +
-                        EventEntry.COLUMN_NAME_EVENT_DESCRIPTION + " TEXT)";
+                        EventEntry.COLUMN_NAME_EVENT_DESCRIPTION + " TEXT," +
+                        EventEntry.COLUMN_NAME_EVENT_TYPE + " TEXT)";
         db.execSQL(sql);
     }
 
@@ -59,6 +60,7 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
                        GetGoingContract.DB_DATE_FORMAT.format(evt.getDate()));
             values.put(EventEntry.COLUMN_NAME_EVENT_LOC, evt.getLocation());
             values.put(EventEntry.COLUMN_NAME_EVENT_DESCRIPTION, evt.getDescription());
+            values.put(EventEntry.COLUMN_NAME_EVENT_TYPE, evt.getType().name());
 
             rowId = db.insert(EventEntry.TABLE_NAME, EventEntry.COLUMN_NAME_EVENT_NAME, values);
             return rowId;
@@ -110,9 +112,11 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
                 String dateString = c.getString(3);
                 Date evtDate = GetGoingContract.DB_DATE_FORMAT.parse(dateString);
                 String evtDesc = c.getString(4);
+                String evtType = c.getString(c.getColumnIndex(EventEntry.COLUMN_NAME_EVENT_TYPE));
 
+                Log.w("DB", "Get Type " + evtType);
 
-                Event evt = new Event(evtName, evtLoc, evtDate, evtDesc, evtId);
+                Event evt = new Event(evtName, evtLoc, evtDate, evtDesc, evtId, evtType);
 
                 c.close();
 
@@ -145,9 +149,11 @@ public class GetGoingDbHelper extends SQLiteOpenHelper{
                     String dateString = c.getString(3);
                     Date evtDate = GetGoingContract.DB_DATE_FORMAT.parse(dateString);
                     String evtDesc = c.getString(4);
+                    String evtType = c.getString(c.getColumnIndex(EventEntry.COLUMN_NAME_EVENT_TYPE));
+                    Log.w("DB", "Get Type " + evtName + " --- " + evtType);
                     int evtId = c.getInt(0);
 
-                    Event evt = new Event(evtName, evtLoc, evtDate, evtDesc, evtId);
+                    Event evt = new Event(evtName, evtLoc, evtDate, evtDesc, evtId, evtType);
 
 
                     events.add(evt);

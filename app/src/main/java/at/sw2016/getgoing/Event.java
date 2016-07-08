@@ -40,6 +40,12 @@ public class Event implements Comparable<Event>{
         this.id = id;
     }
 
+    public Event(String name, String loc, Date date, String desc, int id, String type)
+    {
+        this(name, loc, date, desc, id);
+        this.type = EventType.valueOf(type);
+    }
+
 
     public String getName() {
         return name;

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.app.Activity;
+import android.widget.SearchView;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -32,19 +33,7 @@ public class EventList extends Activity {
 
         setContentView(R.layout.activity_event_list);
 
-        ListView list_view;
-
-        /*final ArrayList<Event> event_list = new ArrayList<Event>();
-
-        event_list.add(new Event("Best Event", "Mustergasse 3", new Date(2016,9,4)));
-        event_list.add(new Event("Event 1", "Musterplatz 3", new Date(2016,9,10)));
-        event_list.add(new Event("Dieter", "Musterweg 3", new Date(2016,8,6)));
-        event_list.add(new Event("Event 3", "Mustergasse 6", new Date(2016,9,7)));
-
-        dbHelper.insertEvent(event_list.get(0));
-        dbHelper.insertEvent(event_list.get(1));
-        dbHelper.insertEvent(event_list.get(2));
-        dbHelper.insertEvent(event_list.get(3));*/
+        final ListView list_view;
 
         final List<Event> event_list_db = dbHelper.getAllEvents();
 
@@ -76,5 +65,37 @@ public class EventList extends Activity {
                 startActivity(create);
             }
         });
+
+        SearchView search = (SearchView) findViewById(R.id.searchEvent);
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query){
+                searchAndUpdateQuery(query);
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText)
+            {
+                searchAndUpdateQuery(newText);
+                return true;
+            }
+
+            public void searchAndUpdateQuery(String text)
+            {
+                List<Event> updated_event_list = new ArrayList<Event>();
+                for(Event x : event_list_db)
+                {
+
+                    if(x.getName().toUpperCase().matches(".*" + text.toUpperCase() +".*"))
+                        updated_event_list.add(x);
+                }
+
+                CustomImgStringList list_adapter = new CustomImgStringList(EventList.this, updated_event_list);
+                list_view.setAdapter(list_adapter);
+            }
+
+        });
+
+
     }
 }

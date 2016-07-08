@@ -47,7 +47,7 @@ public class CreateEvent extends Activity {
         // init date view
         setDateOnView();
 
-        Spinner spinner = (Spinner) findViewById(R.id.create_event_type_spinner);
+        final Spinner spinner = (Spinner) findViewById(R.id.create_event_type_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.array_event_types, android.R.layout.simple_spinner_item);
@@ -118,16 +118,13 @@ public class CreateEvent extends Activity {
                 location = event_location.getText().toString();
                 description = event_description.getText().toString();
 
+
+                // check date and time
                 String[] selected_date = null;
                 Date new_date = null;
                 Resources resources = getResources();
                 try {
-                    Log.d("CreateEvent", "onClick: day = " + day);
-                    Log.d("CreateEvent", "onClick: month = " + month);
-                    Log.d("CreateEvent", "onClick: year = " + year);
-
                     String date_formated = String.format(resources.getString(R.string.date_format), day,month,year);
-
                     new_date = GetGoingContract.DB_DATE_FORMAT.parse(date_formated + " 00:00:00");
                 }
                 catch (Exception e)
@@ -139,8 +136,20 @@ public class CreateEvent extends Activity {
                 }
 
                 Event event = new Event(name, location, new_date);
-                //Event event = new Event(name, location, new Date(year,month,day));
                 event.setDescription(description);
+
+                // check event type
+                String event_type = "";
+                try
+                {
+                    event_type = spinner.getItemAtPosition(spinner.getSelectedItemPosition()).toString();
+                    event.setType(EventType.valueOf(event_type.toUpperCase()));
+                }
+                catch (Exception e)
+                {
+                    Log.d("CreateEvent", e.toString());
+                    return;
+                }
 
                 dbHelper.insertEvent(event);
 
