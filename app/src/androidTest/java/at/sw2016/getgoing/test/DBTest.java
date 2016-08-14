@@ -66,4 +66,40 @@ public class DBTest extends ActivityInstrumentationTestCase2<GetGoing> {
         storedEvents = gg.getDBHelper().getAllEvents();
         assertFalse("Event was successfully deleted", storedEvents.contains(testEvent));
     }
+
+    public void testWritingMultibleEvents() throws Exception {
+
+        int num_of_events = 100;
+        GetGoing gg = (GetGoing)han.getCurrentActivity();
+
+        List<Event> old_events = gg.getDBHelper().getAllEvents();
+
+        Event tmp = new Event("name", "Gasse", evtDate, "Random");
+
+        for(int i = 0; i < num_of_events; i++)
+        {
+            tmp.setName("Event" + i);
+            long row = gg.getDBHelper().insertEvent(tmp);
+            assertTrue(row != -1);
+        }
+
+        List<Event> events = gg.getDBHelper().getAllEvents();
+
+        assertEquals("Should add " + num_of_events + " Events", old_events.size() + num_of_events, events.size());
+
+        events.removeAll(old_events);
+
+        assertEquals("Should be "+ num_of_events, events.size(), num_of_events);
+
+        int j = 0;
+        for (Event e: events){
+            assertEquals("Event name matches", "Event"+j, e.getName());
+            assertEquals("Event location matches", "Gasse", e.getLocation());
+            //assertEquals("Event date matches", evtDate.getTime(), e.getDate().getTime());
+            assertEquals("Event description matches", "Random", e.getDescription());
+            gg.getDBHelper().deleteEvent(e);
+            j++;
+        }
+
+    }
 }

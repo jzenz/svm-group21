@@ -10,7 +10,7 @@
     tools:context="at.sw2016.getgoing.EventList">
 
     <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listEvent1"
         android:layout_alignParentStart="true"
@@ -18,7 +18,7 @@
         />
 
     <SearchView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/searchEvent"
         android:layout_alignParentTop="true"
